@@ -22,6 +22,8 @@ interface Props {
 }
 
 const { title, description, ogTitle, ogDescription, ogImage, timerBg, countdown, ics } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const absoluteOgImage = ogImage ? new URL(ogImage, Astro.site).href : undefined;
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -30,11 +32,17 @@ const { title, description, ogTitle, ogDescription, ogImage, timerBg, countdown,
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={canonicalURL.href} />
+    <meta property="og:url" content={canonicalURL.href} />
     {ogTitle && <meta property="og:title" content={ogTitle} />}
     {(ogDescription || description) && <meta property="og:description" content={ogDescription || description} />}
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    {absoluteOgImage && <meta property="og:image" content={absoluteOgImage} />}
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="L'agenda des bourses horlogères" />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
     <link rel="stylesheet" href="/styles/focus.css" />
     {timerBg && <style is:inline>{`:root { --timer-bg: ${timerBg}; }`}</style>}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3F2178T14"></script>
