@@ -16,7 +16,7 @@ const withDates = allEvents.map((event) => ({
 }));
 
 const upcoming = withDates
-  .filter(({ event, parsed }) => !isPastDateText(event.dates, today))
+  .filter(({ event }) => !isPastDateText(event.dates, today))
   .sort((a, b) => {
     const ta = a.parsed?.startDate.getTime() ?? Number.MAX_SAFE_INTEGER;
     const tb = b.parsed?.startDate.getTime() ?? Number.MAX_SAFE_INTEGER;
@@ -41,16 +41,31 @@ const archives = withDates
   <SiteHeader />
 
   <section class="hero">
-    <div class="hero-content">
-      <h1>Ne cherchez plus, on l'a fait pour vous</h1>
-      <p>
-        Voici la liste exhaustive des bourses horlogères européennes.
-        Retrouvez toutes les informations essentielles pour organiser votre visite
-        et ne manquer aucun événement important.
-      </p>
-      <a href="#agenda" class="cta-button">Voir l'agenda</a>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Agenda des bourses horlogères</p>
+        <h1>Ne cherchez plus, on l'a fait pour vous</h1>
+        <p class="hero-lead">
+          La liste des bourses horlogères européennes, mise à jour régulièrement.
+          Toutes les infos pour organiser vos visites et ne manquer aucun rendez-vous.
+        </p>
+        <div class="hero-actions">
+          <a href="#agenda" class="cta-button">Voir les prochaines bourses</a>
+          <a href="/focus" class="cta-button cta-button--ghost">Pages focus & affiches</a>
+        </div>
+      </div>
+      <figure class="hero-visual">
+        <img
+          src="/images/hero-bourse.jpg"
+          alt="Visiteurs découvrant des montres à une bourse horlogère"
+          width="900"
+          height="1200"
+          loading="eager"
+          decoding="async"
+        />
+        <figcaption class="hero-caption">Sur le terrain — l'ambiance d'une bourse</figcaption>
+      </figure>
     </div>
-    <img src="/image_placeholder.jpg" alt="Illustration bourse horlogère" />
   </section>
 
   <section class="agenda-section agenda-section--upcoming" id="agenda">
@@ -105,7 +120,7 @@ const archives = withDates
   </section>
 
   <footer>
-    <p>Propulsé par <a href="http://lhorlobroc.shop" target="_blank">l'horlobroc</a></p>
+    <p>Propulsé par <a href="http://lhorlobroc.shop" target="_blank" rel="noopener">l'horlobroc</a></p>
     <p>
       N'hésitez pas à nous retrouver sur nos réseaux sociaux
       et faire un tour sur le site pour ne rien manquer des nouveautés !
