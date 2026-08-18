@@ -14,10 +14,7 @@ const { upcoming, archives } = getFocusGridSplit();
     <p class="lead-text">Cliquez sur une ville pour voir la page de détails (format « focus »).</p>
 
     <section class="focus-section focus-section--upcoming">
-      <div class="focus-heading">
-        <h2 class="focus-section__title">À venir</h2>
-        <span class="focus-count">{upcoming.length}</span>
-      </div>
+      <h2 class="focus-section__title">À venir</h2>
       {upcoming.length > 0 ? (
         <FocusGrid items={upcoming} variant="upcoming" />
       ) : (
@@ -30,7 +27,6 @@ const { upcoming, archives } = getFocusGridSplit();
         <details class="archives-panel" open>
           <summary class="archives-summary">
             <span class="archives-summary__title">Archives</span>
-            <span class="focus-count focus-count--muted">{archives.length}</span>
           </summary>
           <p class="lead-text lead-text--archives">Éditions passées — consultables pour référence.</p>
           <FocusGrid items={archives} variant="archives" />
