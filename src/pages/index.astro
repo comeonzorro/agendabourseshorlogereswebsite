@@ -5,6 +5,7 @@ import SiteHeader from '../components/SiteHeader.astro';
 import AgendaTable from '../components/AgendaTable.astro';
 import bourses from '../data/bourses.json';
 import { isPastDateText, parseDateFR, startOfToday } from '../lib/dates';
+import { buildUpcomingEventsGraph } from '../lib/event-schema';
 import type { Bourse } from '../lib/types';
 
 const today = startOfToday();
@@ -32,19 +33,14 @@ const archives = withDates
     return tb - ta;
   })
   .map(({ event }) => event);
+
+const structuredData = buildUpcomingEventsGraph(upcoming);
 ---
 <BaseLayout
   title="Bourses Horlogères Européennes 2025-2026"
   description="Agenda des bourses horlogères en France et en Europe : dates, lieux, tarifs et pages focus des prochaines éditions."
 >
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: "L'agenda des bourses horlogères",
-    url: 'https://www.lagenda-des-bourses-horlogeres.com/',
-    description: 'Agenda des bourses horlogères européennes — dates, lieux et infos pratiques.',
-    inLanguage: 'fr-FR',
-  })} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(structuredData)} />
   <link rel="stylesheet" href="/styles/home.css" slot="head" />
   <script src="/scripts/agenda.js" slot="head"></script>
 

@@ -8,6 +8,7 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  eventJsonLd?: Record<string, unknown>;
   timerBg?: string;
   countdown?: string;
   ics?: {
@@ -21,7 +22,7 @@ interface Props {
   };
 }
 
-const { title, description, ogTitle, ogDescription, ogImage, timerBg, countdown, ics } = Astro.props;
+const { title, description, ogTitle, ogDescription, ogImage, eventJsonLd, timerBg, countdown, ics } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const absoluteOgImage = ogImage ? new URL(ogImage, Astro.site).href : undefined;
 ---
@@ -38,7 +39,10 @@ const absoluteOgImage = ogImage ? new URL(ogImage, Astro.site).href : undefined;
     {ogTitle && <meta property="og:title" content={ogTitle} />}
     {(ogDescription || description) && <meta property="og:description" content={ogDescription || description} />}
     {absoluteOgImage && <meta property="og:image" content={absoluteOgImage} />}
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={eventJsonLd ? 'event' : 'website'} />
+    {eventJsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(eventJsonLd)} />
+    )}
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="L'agenda des bourses horlogères" />
     <meta name="twitter:card" content="summary_large_image" />

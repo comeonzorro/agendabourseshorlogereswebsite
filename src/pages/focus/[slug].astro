@@ -1,6 +1,7 @@
 ---
 import FocusLayout from '../../layouts/FocusLayout.astro';
 import { getAllFocusPages, getFocusPage } from '../../lib/focus';
+import { buildFocusEventJsonLd } from '../../lib/event-schema';
 import type { FocusCta } from '../../lib/types';
 
 export function getStaticPaths() {
@@ -30,6 +31,7 @@ function isExternal(href: string) {
   ogTitle={page.seo.ogTitle}
   ogDescription={page.seo.ogDescription}
   ogImage={page.seo.ogImage || page.poster}
+  eventJsonLd={buildFocusEventJsonLd(page)}
   timerBg={page.theme?.timerBg}
   countdown={page.countdown}
   ics={page.ics}
