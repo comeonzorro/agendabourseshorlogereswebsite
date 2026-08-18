@@ -4,15 +4,10 @@ interface Props {
 }
 
 const { variant = 'header' } = Astro.props;
-
-const src =
-  variant === 'footer'
-    ? '/images/logo-agenda-bourses-horlogeres-transparent.png'
-    : '/images/logo-agenda-bourses-horlogeres.png';
 ---
 <img
   class={`site-logo site-logo--${variant}`}
-  src={src}
+  src="/images/logo-agenda-bourses-horlogeres.png"
   alt="L'agenda des bourses horlogères"
   width="1536"
   height="1024"
