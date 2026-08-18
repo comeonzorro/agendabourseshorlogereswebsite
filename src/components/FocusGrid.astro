@@ -1,0 +1,30 @@
+---
+interface Props {
+  items: Array<{
+    city: string;
+    date: string;
+    img: string;
+    url: string;
+    tag: string;
+  }>;
+  variant?: 'upcoming' | 'archives';
+}
+
+const { items, variant = 'upcoming' } = Astro.props;
+---
+<div class={`focus-grid ${variant === 'archives' ? 'focus-grid--archives' : ''}`}>
+  {items.map((item) => (
+    <a class={`focus-card ${variant === 'archives' ? 'focus-card--archive' : ''}`} href={item.url}>
+      <div class="poster">
+        <img class="poster-img" src={item.img} alt={`Affiche — ${item.city}`} loading="lazy" />
+      </div>
+      <div class="focus-meta">
+        <div>
+          <div class="city">{item.city}</div>
+          <div class="date">{item.date}</div>
+        </div>
+        {item.tag && <span class={`year-badge ${variant === 'archives' ? 'year-badge--archive' : ''}`}>{item.tag}</span>}
+      </div>
+    </a>
+  ))}
+</div>

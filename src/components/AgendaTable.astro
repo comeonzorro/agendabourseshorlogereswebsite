@@ -1,0 +1,43 @@
+---
+interface Props {
+  events: Array<{
+    dates: string;
+    location: string;
+    address: string;
+    contact: string;
+    price: string;
+    website: { label: string; href: string };
+  }>;
+  variant?: 'upcoming' | 'archives';
+}
+
+const { events, variant = 'upcoming' } = Astro.props;
+---
+<div class={`table-container ${variant === 'archives' ? 'table-container--compact' : ''}`}>
+  <table class="agenda-table" data-variant={variant}>
+    <thead>
+      <tr>
+        <th>Dates</th>
+        <th>Localisation</th>
+        <th>Adresse</th>
+        <th>Contact</th>
+        <th>Tarif</th>
+        <th>Mail/Website</th>
+      </tr>
+    </thead>
+    <tbody>
+      {events.map((event) => (
+        <tr class={variant === 'upcoming' ? 'upcoming-date' : 'past-date'}>
+          <td>{event.dates}</td>
+          <td>{event.location}</td>
+          <td>{event.address}</td>
+          <td>{event.contact}</td>
+          <td>{event.price}</td>
+          <td>
+            <a href={event.website.href}>{event.website.label}</a>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

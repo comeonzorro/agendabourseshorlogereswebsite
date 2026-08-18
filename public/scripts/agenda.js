@@ -1,6 +1,4 @@
     document.addEventListener("DOMContentLoaded", function () {
-      const today = new Date();
-
       /* ===== Drapeaux & FR/Étranger ===== */
       const flagIcons = {
         'pays-bas': 'https://flagcdn.com/16x12/nl.png',
@@ -151,111 +149,115 @@
       }
 
       /* ===== Marquage passé/à venir + Drapeaux + Boutons Calendrier ===== */
-      const tbody = document.querySelector("tbody");
-      const headerRow = document.querySelector("thead tr");
-      // ajoute l'en-tête "Calendrier"
-      const thCal = document.createElement('th'); thCal.textContent = 'Calendrier';
-      headerRow.appendChild(thCal);
+      function enhanceTable(table) {
+        const tbody = table.querySelector('tbody');
+        const headerRow = table.querySelector('thead tr');
+        if (!tbody || !headerRow) return [];
+
+        if (!headerRow.querySelector('.th-calendrier')) {
+          const thCal = document.createElement('th');
+          thCal.className = 'th-calendrier';
+          thCal.textContent = 'Calendrier';
+          headerRow.appendChild(thCal);
+        }
+
+        const eventsForExport = [];
+
+        tbody.querySelectorAll('tr').forEach(row => {
+          const dateText = row.cells[0].innerText.trim();
+          const locCell = row.cells[1];
+          const addrCell = row.cells[2];
+          const contactCell = row.cells[3];
+          const tarifCell = row.cells[4];
+          const siteCell = row.cells[5];
+
+          const parsed = parseDateRangeFR(dateText);
+
+          let locationText = locCell.innerText;
+          let locationLower = locationText.toLowerCase();
+          let matchedForeign = false;
+          for (const [countryKey, iconUrl] of Object.entries(flagIcons)) {
+            if (locationLower.includes(countryKey)) {
+              locCell.innerHTML = locationText +
+                ' <img src="' + iconUrl + '" alt="' + countryKey + '" style="margin-left:5px; vertical-align:middle;">';
+              row.classList.add('foreign-event');
+              matchedForeign = true;
+              break;
+            }
+          }
+          if (!matchedForeign) {
+            locCell.innerHTML = locationText +
+              ' <img src="' + franceFlagUrl + '" alt="France" style="margin-left:5px; vertical-align:middle;">';
+            row.classList.add('french-event');
+          }
+
+          const calTd = document.createElement('td');
+          calTd.className = 'cal-actions';
+
+          if (parsed) {
+            const summary = `Bourse horlogère — ${locationText.replace(/\s*\(.*?\)\s*/, '').trim()}`;
+            const location = addrCell.innerText.trim();
+            const siteLinkEl = siteCell.querySelector('a');
+            const url = siteLinkEl ? siteLinkEl.href : '';
+            const details = [
+              tarifCell?.innerText?.trim() ? `Tarif: ${tarifCell.innerText.trim()}` : '',
+              contactCell?.innerText?.trim() ? `Contact: ${contactCell.innerText.trim()}` : '',
+              url ? `Détails: ${url}` : '',
+              `Source: L'agenda des bourses horlogères`
+            ].filter(Boolean).join('\\n');
+
+            const uid = `${parsed.startYMD}-${sanitize(locationText).replace(/\W+/g, '-')}@agenda-bourses`;
+            const ics = buildIcsSingle({
+              summary, location, description: details, url,
+              startYMD: parsed.startYMD, endYMD_excl: parsed.endYMD_excl, uid
+            });
+
+            const icsLink = makeDownloadLink(
+              `${summary.replace(/\s+/g, '_')}.ics`, 'text/calendar', ics
+            );
+            icsLink.textContent = 'iCal (.ics)';
+
+            const gcalLink = document.createElement('a');
+            gcalLink.href = buildGoogleLink({ summary, location, description: details, startYMD: parsed.startYMD, endYMD_excl: parsed.endYMD_excl });
+            gcalLink.target = '_blank';
+            gcalLink.rel = 'noopener';
+            gcalLink.textContent = 'Google';
+
+            calTd.appendChild(icsLink);
+            calTd.appendChild(gcalLink);
+            row.appendChild(calTd);
+
+            if (table.dataset.variant === 'upcoming') {
+              eventsForExport.push({
+                summary, location, description: details, url,
+                startYMD: parsed.startYMD, endYMD_excl: parsed.endYMD_excl,
+                uid
+              });
+            }
+          } else {
+            calTd.textContent = '—';
+            row.appendChild(calTd);
+          }
+        });
+
+        return eventsForExport;
+      }
 
       const allEventsForMasterICS = [];
-
-      tbody.querySelectorAll("tr").forEach(row => {
-        const dateText = row.cells[0].innerText.trim();
-        const locCell = row.cells[1];
-        const addrCell = row.cells[2];
-        const contactCell = row.cells[3];
-        const tarifCell = row.cells[4];
-        const siteCell = row.cells[5];
-
-        // 1) Passé / à venir (tolérant accents)
-        const parsed = parseDateRangeFR(dateText);
-        if (parsed) {
-          if (parsed.startDate < today) { row.classList.add("past-date"); }
-          else { row.classList.add("upcoming-date"); }
-        }
-
-        // 2) Drapeaux
-        let locationText = locCell.innerText;
-        let locationLower = locationText.toLowerCase();
-        let matchedForeign = false;
-        for (const [countryKey, iconUrl] of Object.entries(flagIcons)) {
-          if (locationLower.includes(countryKey)) {
-            locCell.innerHTML = locationText +
-              ' <img src="' + iconUrl + '" alt="' + countryKey + '" style="margin-left:5px; vertical-align:middle;">';
-            row.classList.add('foreign-event');
-            matchedForeign = true;
-            break;
-          }
-        }
-        if (!matchedForeign) {
-          locCell.innerHTML = locationText +
-            ' <img src="' + franceFlagUrl + '" alt="France" style="margin-left:5px; vertical-align:middle;">';
-          row.classList.add('french-event');
-        }
-
-        // 3) Boutons Calendrier pour chaque ligne
-        const calTd = document.createElement('td');
-        calTd.className = 'cal-actions';
-
-        if (parsed) {
-          const summary = `Bourse horlogère — ${locationText.replace(/\s*\(.*?\)\s*/, '').trim()}`;
-          const location = addrCell.innerText.trim();
-          const siteLinkEl = siteCell.querySelector('a');
-          const url = siteLinkEl ? siteLinkEl.href : '';
-          const details = [
-            tarifCell?.innerText?.trim() ? `Tarif: ${tarifCell.innerText.trim()}` : '',
-            contactCell?.innerText?.trim() ? `Contact: ${contactCell.innerText.trim()}` : '',
-            url ? `Détails: ${url}` : '',
-            `Source: L'agenda des bourses horlogères`
-          ].filter(Boolean).join('\\n');
-
-          const uid = `${parsed.startYMD}-${sanitize(locationText).replace(/\W+/g, '-')}@agenda-bourses`;
-          const ics = buildIcsSingle({
-            summary, location, description: details, url,
-            startYMD: parsed.startYMD, endYMD_excl: parsed.endYMD_excl, uid
-          });
-
-          // Lien .ics (iPhone/Outlook/etc.)
-          const icsLink = makeDownloadLink(
-            `${summary.replace(/\s+/g, '_')}.ics`, 'text/calendar', ics
-          );
-          icsLink.textContent = 'iCal (.ics)';
-
-          // Lien Google Calendar
-          const gcalLink = document.createElement('a');
-          gcalLink.href = buildGoogleLink({ summary, location, description: details, startYMD: parsed.startYMD, endYMD_excl: parsed.endYMD_excl });
-          gcalLink.target = '_blank';
-          gcalLink.rel = 'noopener';
-          gcalLink.textContent = 'Google';
-
-          calTd.appendChild(icsLink);
-          calTd.appendChild(gcalLink);
-          row.appendChild(calTd);
-
-          // Ajoute à l’ICS global
-          allEventsForMasterICS.push({
-            summary, location, description: details, url,
-            startYMD: parsed.startYMD, endYMD_excl: parsed.endYMD_excl,
-            uid
-          });
-        } else {
-          calTd.textContent = '—';
-          row.appendChild(calTd);
-        }
+      document.querySelectorAll('.agenda-table').forEach((table) => {
+        allEventsForMasterICS.push(...enhanceTable(table));
       });
 
-      // Bouton global "Exporter tout (.ics)"
-      const actionsBar = document.querySelector('.agenda-actions');
-      if (actionsBar) {
+      const actionsBar = document.querySelector('.agenda-actions[data-scope="upcoming"]');
+      if (actionsBar && allEventsForMasterICS.length) {
         const btnAll = document.createElement('a');
         btnAll.href = '#';
         btnAll.className = 'btn';
-        btnAll.textContent = 'Exporter tout (.ics)';
+        btnAll.textContent = 'Exporter les prochaines (.ics)';
         btnAll.addEventListener('click', (e) => {
           e.preventDefault();
-          if (!allEventsForMasterICS.length) return;
           const icsAll = buildIcsMultiple(allEventsForMasterICS);
-          const link = makeDownloadLink('Agenda-bourses-2025.ics', 'text/calendar', icsAll);
+          const link = makeDownloadLink('Agenda-bourses-a-venir.ics', 'text/calendar', icsAll);
           document.body.appendChild(link);
           link.click();
           link.remove();

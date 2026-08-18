@@ -231,14 +231,13 @@
 
     /* Past / upcoming styles */
     .past-date {
-      opacity: 0.7;
-      font-style: italic;
-      color: #777;
+      opacity: 0.75;
+      color: #888;
     }
 
     .upcoming-date {
-      font-weight: bold;
-      color: #4caf50;
+      font-weight: inherit;
+      color: inherit;
     }
 
     /* FRANCE vs ÉTRANGER */
@@ -374,4 +373,131 @@
         padding-left: var(--edge);
         padding-right: var(--edge);
       }
+    }
+
+    /* ===== Sections à venir / archives ===== */
+    .agenda-section--upcoming {
+      margin-top: 2rem;
+    }
+
+    .agenda-section--archives {
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .agenda-heading,
+    .archives-summary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+
+    .agenda-heading h2 {
+      margin-bottom: 0;
+    }
+
+    .agenda-count {
+      display: inline-flex;
+      align-items: center;
+      font-size: .85rem;
+      font-weight: 700;
+      background: #eef8f1;
+      border: 1px solid #cfe9da;
+      color: #1e7f4f;
+      border-radius: 999px;
+      padding: .2rem .65rem;
+    }
+
+    .agenda-count--muted {
+      background: #f3f3f3;
+      border-color: #ddd;
+      color: #666;
+      font-weight: 600;
+    }
+
+    .agenda-lead {
+      text-align: center;
+      color: #666;
+      font-size: .95rem;
+      margin: .5rem 0 1rem;
+    }
+
+    .agenda-lead--archives {
+      margin-top: 1rem;
+      font-size: .9rem;
+    }
+
+    .agenda-empty {
+      text-align: center;
+      color: #666;
+      padding: 1.5rem;
+      background: #fafafa;
+      border: 1px dashed #ddd;
+      border-radius: 8px;
+    }
+
+    .archives-panel {
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      background: #fafafa;
+      padding: .75rem 1rem 1rem;
+    }
+
+    .archives-summary {
+      cursor: pointer;
+      list-style: none;
+      justify-content: space-between;
+      padding: .5rem 0;
+      color: #555;
+      font-weight: 600;
+    }
+
+    .archives-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .archives-summary__title::before {
+      content: '▸ ';
+      display: inline-block;
+      transition: transform .15s ease;
+    }
+
+    .archives-panel[open] .archives-summary__title::before {
+      transform: rotate(90deg);
+    }
+
+    .table-container--compact table {
+      font-size: .88rem;
+    }
+
+    .table-container--compact th,
+    .table-container--compact td {
+      padding: .5rem .6rem;
+    }
+
+    .agenda-table[data-variant="archives"] .cal-actions a {
+      font-size: .75rem;
+      padding: .25rem .45rem;
+    }
+
+    .upcoming-date td:first-child {
+      font-weight: 700;
+      color: #1b5e20;
+    }
+
+    .upcoming-date {
+      background: #fafffa;
+    }
+
+    .past-date {
+      opacity: 0.75;
+      font-style: normal;
+      color: #888;
+      background: transparent;
+    }
+
+    .past-date td:first-child {
+      font-weight: 500;
     }

@@ -146,6 +146,108 @@ footer { margin: 2rem 0; color: #777; text-align: center; }
 }
 h1.page-title { font-size: 1.4rem; margin: .5rem 0 0; }
 .lead-text { color: var(--muted); margin-top: .25rem; }
+.lead-text--archives { font-size: .9rem; margin-bottom: .75rem; }
+
+.focus-section { margin-top: 1.5rem; }
+.focus-section--upcoming { margin-top: 1rem; }
+.focus-section--archives { margin-top: 2rem; }
+
+.focus-heading,
+.archives-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-bottom: .75rem;
+}
+
+.focus-section__title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.focus-count {
+  display: inline-flex;
+  align-items: center;
+  font-size: .8rem;
+  font-weight: 700;
+  background: #eef8f1;
+  border: 1px solid #cfe9da;
+  color: #1e7f4f;
+  border-radius: 999px;
+  padding: .15rem .55rem;
+}
+
+.focus-count--muted {
+  background: #f3f3f3;
+  border-color: #ddd;
+  color: #666;
+  font-weight: 600;
+}
+
+.focus-empty {
+  color: var(--muted);
+  padding: 1rem;
+  background: #fafafa;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+
+.focus-grid--archives {
+  opacity: .92;
+}
+
+.focus-card--archive {
+  filter: grayscale(.15);
+}
+
+.focus-card--archive:hover {
+  transform: none;
+  opacity: .95;
+}
+
+.focus-card--archive .poster-img {
+  aspect-ratio: 4/5;
+}
+
+.focus-card--archive .city {
+  font-weight: 600;
+  color: #555;
+}
+
+.year-badge--archive {
+  background: #f3f3f3;
+  border-color: #ddd;
+  color: #777;
+}
+
+.archives-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fafafa;
+  padding: .75rem 1rem 1rem;
+}
+
+.archives-summary {
+  cursor: pointer;
+  list-style: none;
+  color: #555;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.archives-summary::-webkit-details-marker { display: none; }
+
+.archives-summary__title::before {
+  content: '▸ ';
+  display: inline-block;
+  transition: transform .15s ease;
+}
+
+.archives-panel[open] .archives-summary__title::before {
+  transform: rotate(90deg);
+}
 
 @media (max-width: 900px) {
   .hero, .paths, .lead { grid-template-columns: 1fr; }

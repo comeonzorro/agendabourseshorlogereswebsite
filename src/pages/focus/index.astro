@@ -1,8 +1,9 @@
 ---
 import FocusLayout from '../../layouts/FocusLayout.astro';
-import { getFocusGridItems } from '../../lib/focus';
+import FocusGrid from '../../components/FocusGrid.astro';
+import { getFocusGridSplit } from '../../lib/focus';
 
-const items = getFocusGridItems();
+const { upcoming, archives } = getFocusGridSplit();
 ---
 <FocusLayout
   title="Affiches — L'agenda des bourses horlogères"
@@ -11,22 +12,31 @@ const items = getFocusGridItems();
   <main class="wrap">
     <h1 class="page-title">Affiches par ville</h1>
     <p class="lead-text">Cliquez sur une ville pour voir la page de détails (format « focus »).</p>
-    <div class="focus-grid">
-      {items.map((item) => (
-        <a class="focus-card" href={item.url}>
-          <div class="poster">
-            <img class="poster-img" src={item.img} alt={`Affiche — ${item.city}`} />
-          </div>
-          <div class="focus-meta">
-            <div>
-              <div class="city">{item.city}</div>
-              <div class="date">{item.date}</div>
-            </div>
-            {item.tag && <span class="year-badge">{item.tag}</span>}
-          </div>
-        </a>
-      ))}
-    </div>
+
+    <section class="focus-section focus-section--upcoming">
+      <div class="focus-heading">
+        <h2 class="focus-section__title">À venir</h2>
+        <span class="focus-count">{upcoming.length}</span>
+      </div>
+      {upcoming.length > 0 ? (
+        <FocusGrid items={upcoming} variant="upcoming" />
+      ) : (
+        <p class="focus-empty">Aucune affiche à venir pour le moment.</p>
+      )}
+    </section>
+
+    {archives.length > 0 && (
+      <section class="focus-section focus-section--archives">
+        <details class="archives-panel">
+          <summary class="archives-summary">
+            <span class="archives-summary__title">Archives</span>
+            <span class="focus-count focus-count--muted">{archives.length}</span>
+          </summary>
+          <p class="lead-text lead-text--archives">Éditions passées — consultables pour référence.</p>
+          <FocusGrid items={archives} variant="archives" />
+        </details>
+      </section>
+    )}
   </main>
   <footer>© 2025 — Association Horlogère de Bretagne × L'HorloBroc</footer>
 </FocusLayout>

@@ -2,10 +2,36 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PromoBar from '../components/PromoBar.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import AgendaTable from '../components/AgendaTable.astro';
 import bourses from '../data/bourses.json';
+import { isPastDateText, parseDateFR, startOfToday } from '../lib/dates';
 import type { Bourse } from '../lib/types';
 
-const events = bourses as Bourse[];
+const today = startOfToday();
+const allEvents = bourses as Bourse[];
+
+const withDates = allEvents.map((event) => ({
+  event,
+  parsed: parseDateFR(event.dates),
+}));
+
+const upcoming = withDates
+  .filter(({ event, parsed }) => !isPastDateText(event.dates, today))
+  .sort((a, b) => {
+    const ta = a.parsed?.startDate.getTime() ?? Number.MAX_SAFE_INTEGER;
+    const tb = b.parsed?.startDate.getTime() ?? Number.MAX_SAFE_INTEGER;
+    return ta - tb;
+  })
+  .map(({ event }) => event);
+
+const archives = withDates
+  .filter(({ event }) => isPastDateText(event.dates, today))
+  .sort((a, b) => {
+    const ta = a.parsed?.startDate.getTime() ?? 0;
+    const tb = b.parsed?.startDate.getTime() ?? 0;
+    return tb - ta;
+  })
+  .map(({ event }) => event);
 ---
 <BaseLayout title="Bourses Horlogères Européennes 2025-2026">
   <link rel="stylesheet" href="/styles/home.css" slot="head" />
@@ -18,7 +44,7 @@ const events = bourses as Bourse[];
     <div class="hero-content">
       <h1>Ne cherchez plus, on l'a fait pour vous</h1>
       <p>
-        Voici la liste exhaustive des bourses horlogères européennes de 2025.
+        Voici la liste exhaustive des bourses horlogères européennes.
         Retrouvez toutes les informations essentielles pour organiser votre visite
         et ne manquer aucun événement important.
       </p>
@@ -27,40 +53,33 @@ const events = bourses as Bourse[];
     <img src="/image_placeholder.jpg" alt="Illustration bourse horlogère" />
   </section>
 
-  <section class="agenda-section" id="agenda">
-    <h2>Agenda 2025-2026</h2>
-    <div class="agenda-actions"></div>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Dates</th>
-            <th>Localisation</th>
-            <th>Adresse</th>
-            <th>Contact</th>
-            <th>Tarif</th>
-            <th>Mail/Website</th>
-          </tr>
-        </thead>
-        <tbody>
-          {events.map((event) => (
-            <tr>
-              <td>{event.dates}</td>
-              <td>{event.location}</td>
-              <td>{event.address}</td>
-              <td>{event.contact}</td>
-              <td>{event.price}</td>
-              <td>
-                <a href={event.website.href}>
-                  {event.website.label}
-                </a>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+  <section class="agenda-section agenda-section--upcoming" id="agenda">
+    <div class="agenda-heading">
+      <h2>Prochaines bourses</h2>
+      <span class="agenda-count">{upcoming.length} événement{upcoming.length > 1 ? 's' : ''}</span>
     </div>
+    <p class="agenda-lead">Les dates à venir, triées chronologiquement.</p>
+    <div class="agenda-actions" data-scope="upcoming"></div>
+
+    {upcoming.length > 0 ? (
+      <AgendaTable events={upcoming} variant="upcoming" />
+    ) : (
+      <p class="agenda-empty">Aucune bourse à venir pour le moment. Consultez les archives ci-dessous.</p>
+    )}
   </section>
+
+  {archives.length > 0 && (
+    <section class="agenda-section agenda-section--archives" id="archives">
+      <details class="archives-panel">
+        <summary class="archives-summary">
+          <span class="archives-summary__title">Archives — événements passés</span>
+          <span class="agenda-count agenda-count--muted">{archives.length}</span>
+        </summary>
+        <p class="agenda-lead agenda-lead--archives">Historique des éditions déjà passées.</p>
+        <AgendaTable events={archives} variant="archives" />
+      </details>
+    </section>
+  )}
 
   <section class="about-section" id="about">
     <h2>Qui sommes-nous ?</h2>
