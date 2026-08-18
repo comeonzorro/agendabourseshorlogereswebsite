@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.lagenda-des-bourses-horlogeres.com/sitemap-index.xml
