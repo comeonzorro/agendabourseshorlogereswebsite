@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Focus — 22 novembre à Dourdan • 10ᵉ Bourse Horlogère de Dourdan</title>
+  <meta name="description" content="Page Focus : 10ᵉ Bourse Horlogère de Dourdan — Dimanche 22 novembre 2026, Salle des fêtes (800 m²), rue d’Orsonville. Partenariat AFAHA, 50 exposants, entrée 5 €, restauration sur place."/>
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Focus — Bourse Horlogère de Dourdan • 22 novembre 2026"/>
+  <meta property="og:description" content="50 exposants • ~600 visiteurs • 800 m² • 10:00 → 17:00 • Entrée 5 € • Restauration • Partenariat AFAHA • Accès RER C (Dourdan)."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="/images/bourse-dourdan-2026.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <style>
+    /* ========= RESET & BASE ========= */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#ffffff;--ink:#222;--muted:#666;--line:#eee;--brand:#111;--accent:#fcd62c;--success:#1e7f4f;--danger:#b00020;--radius:14px
+    }
+    html,body{height:100%}
+    body{
+      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);background:var(--bg);
+      padding-top:42px; /* réserve pour la barre promo fixe */
+    }
+    a{color:var(--ink);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* ========= BARRE PROMO ========= */
+    #promo-bar{
+      position:fixed;top:0;left:0;right:0;
+      background:#000;color:#fff;font-size:.9rem;line-height:1.4;
+      text-align:center;padding:.5rem 1rem;z-index:100;
+    }
+    #promo-bar a{color:#fff;font-weight:600;text-decoration:underline;}
+
+    /* ========= HEADER ========= */
+    header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:1rem 2rem;border-bottom:1px solid #eee;
+      position:sticky;top:0;z-index:10;background:#fff;
+    }
+    .logo{font-size:1.3rem;font-weight:bold}
+    .burger{display:none;flex-direction:column;justify-content:space-around;width:30px;height:25px;cursor:pointer}
+    .burger span{display:block;height:3px;background:#333;border-radius:2px}
+    nav ul{list-style:none;display:flex;gap:1.5rem}
+    nav ul li{font-size:1rem;font-weight:500}
+
+    /* ========= LAYOUT FOCUS ========= */
+    .wrap{max-width:1100px;margin:0 auto;padding:1rem 1.25rem}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:2rem 0}
+    .hero h1{font-size:clamp(1.6rem,2.5vw,2.3rem);line-height:1.15;margin-bottom:.5rem}
+    .sub{color:var(--muted)}
+    .cta-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;background:#111;color:#fff;border-radius:10px;padding:.8rem 1rem;font-weight:700}
+    .btn.secondary{background:#fff;color:#111;border:1px solid #111}
+    .btn.ghost{background:#fff;border:1px dashed #aaa;color:#333}
+    .meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.75rem;color:#444}
+    .pill{display:inline-flex;align-items:center;gap:.4rem;background:#f6f6f6;border:1px solid var(--line);border-radius:999px;padding:.35rem .6rem;font-size:.85rem}
+    .hero-img{
+      width:100%;height:auto;border-radius:var(--radius);border:1px solid var(--line);
+      /* pas de crop, on respecte le visuel source */
+    }
+
+    .timer{display:flex;gap:.5rem;margin-top:1rem}
+    .tile{flex:1;min-width:90px;background:#0f0f0f;color:#fff;border-radius:12px;padding:.75rem;text-align:center}
+    .tile span{display:block}
+    .tile .n{font-size:1.4rem;font-weight:800}
+    .tile .l{font-size:.8rem;color:#ddd}
+
+    .paths{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+    .card{border:1px solid var(--line);border-radius:var(--radius);padding:1rem;background:#fff}
+    .card h3{font-size:1.15rem;margin-bottom:.35rem}
+    .card p{color:var(--muted)}
+    .card .cta{margin-top:.75rem}
+    .card ul{margin-top:.5rem;padding-left:1rem;color:#444}
+    .badge{display:inline-block;background:#eef8f1;border:1px solid #cfe9da;color:var(--success);font-weight:700;border-radius:999px;padding:.15rem .5rem;font-size:.75rem}
+
+    .gallery{margin-top:2rem}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .prod{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff}
+    .prod img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+    .prod .p{padding:.75rem}
+    .prod h4{font-size:1rem}
+    .note{font-size:.85rem;color:#555}
+    .cta-inline{margin-top:.5rem;display:flex;gap:.5rem;flex-wrap:wrap}
+
+    .lead{display:grid;grid-template-columns:1.15fr .85fr;gap:1rem;align-items:center;margin-top:2rem;border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+    .lead form{display:flex;gap:.5rem}
+    input[type=email]{flex:1;border:1px solid #ccc;border-radius:10px;padding:.8rem}
+
+    .faq{margin-top:2rem}
+    details{border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;background:#fff}
+    details+details{margin-top:.5rem}
+    summary{font-weight:700;cursor:pointer}
+    details p{margin-top:.5rem;color:#444}
+
+    .dock{position:sticky;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--line)}
+    .dock .wrap{display:flex;gap:.5rem;justify-content:space-between;align-items:center}
+    .dock .btn{flex:1;justify-content:center}
+
+    footer{margin:2rem 0;color:#777;text-align:center}
+
+    /* ========= MEDIA QUERIES ========= */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .paths{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+      .lead{grid-template-columns:1fr}
+    }
+    @media (max-width:768px){
+      header{flex-direction:column;justify-content:center;gap:.5rem}
+      .burger{display:flex;position:static}
+      nav ul{
+        display:none;position:absolute;top:60px;left:0;right:0;background:#fff;
+        flex-direction:column;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid #eee;
+      }
+      nav ul.open{display:flex}
+    }
+    @media (max-width:580px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+
+  <!-- Countdown & ICS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dourdan — 22 novembre 2026, 10:00 → 17:00 (Europe/Paris, hiver CET UTC+1)
+      const target = new Date('2026-11-22T10:00:00+01:00').getTime();
+      const d = document.querySelector('#d'), h = document.querySelector('#h'),
+            m = document.querySelector('#m'), s = document.querySelector('#s');
+      const tick = ()=>{
+        const now = Date.now();
+        let t = Math.max(0, target - now);
+        const days = Math.floor(t / 86400000); t -= days*86400000;
+        const hours = Math.floor(t / 3600000); t -= hours*3600000;
+        const mins = Math.floor(t / 60000); t -= mins*60000;
+        const secs = Math.floor(t / 1000);
+        d.textContent = String(days);
+        h.textContent = String(hours).padStart(2,'0');
+        m.textContent = String(mins).padStart(2,'0');
+        s.textContent = String(secs).padStart(2,'0');
+      };
+      tick(); setInterval(tick, 1000);
+
+      // ICS
+      const icsBtn = document.getElementById('ics');
+      if (icsBtn){
+        const dtStart = '20261122T090000Z', dtEnd = '20261122T160000Z'; // 10:00–17:00 CET
+        const ics = [
+          'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//AHB//Focus Dourdan//FR',
+          'BEGIN:VEVENT',
+          'UID:ahb-2026-dourdan@agenda-bourses-horlogeres',
+          'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z',
+          'DTSTART:'+dtStart,'DTEND:'+dtEnd,
+          'SUMMARY:10ᵉ Bourse Horlogère de Dourdan',
+          'LOCATION:Salle des fêtes de Dourdan, Rue d’Orsonville, 91410 Dourdan',
+          'DESCRIPTION:50 exposants, ~600 visiteurs — Partenariat AFAHA — Entrée 5 €. Infos & inscriptions: horloge.dourdan@gmail.com',
+          'END:VEVENT','END:VCALENDAR'
+        ].join('\n');
+        const url = URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));
+        icsBtn.href = url; icsBtn.download = 'bourse-horlogere-dourdan-2026-11-22.ics';
+      }
+    });
+  </script>
+
+  <!-- Burger menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const burger = document.querySelector('.burger');
+      const navUl = document.querySelector('nav ul');
+      if(!burger || !navUl) return;
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('open');
+        navUl.classList.toggle('open');
+      });
+      navUl.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navUl.classList.contains('open')) {
+            navUl.classList.remove('open');
+            burger.classList.remove('open');
+          }
+        });
+      });
+    });
+  </script>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3F2178T14"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-D3F2178T14');
+</script>
+
+<body>
+  <!-- BARRE PROMO -->
+  <div id="promo-bar">Vous organisez une bourse&nbsp;? <a href="mailto:contact@lagenda-des-bourses-horlogeres.com?subject=Mise%20en%20avant%20sur%20l'agenda">Contactez-nous&nbsp;!</a></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">L'agenda des bourses horlogères</div>
+    <div class="burger" aria-label="Ouvrir le menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/focus.html">Focus</a></li>
+        <li><a href="/index.html#agenda">Agenda</a></li>
+        <li><a href="/index.html#about">Qui sommes-nous ?</a></li>
+        <li><a href="/index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ======= CONTENU FOCUS ======= -->
+  <main class="wrap">
+    <section class="hero" id="event">
+      <div>
+        <h1>10ᵉ Bourse Horlogère de Dourdan</h1>
+        <p class="sub">Dimanche 22 novembre 2026 • Salle des fêtes de Dourdan, rue d’Orsonville (800&nbsp;m²) • 10:00 → 17:00 • En partenariat avec l’AFAHA • Accès RER&nbsp;C (Dourdan).</p>
+        <div class="timer" aria-label="Compte à rebours">
+          <div class="tile"><span class="n" id="d">—</span><span class="l">jours</span></div>
+          <div class="tile"><span class="n" id="h">—</span><span class="l">heures</span></div>
+          <div class="tile"><span class="n" id="m">—</span><span class="l">minutes</span></div>
+          <div class="tile"><span class="n" id="s">—</span><span class="l">secondes</span></div>
+        </div>
+        <div class="cta-row" style="margin-top:1rem">
+          <a class="btn" href="mailto:horloge.dourdan@gmail.com?subject=Infos%20Bourse%20Horlog%C3%A8re%20de%20Dourdan" target="_blank" rel="noopener">Infos & contact</a>
+          <a id="ics" class="btn secondary" href="#">+ Ajouter à mon agenda</a>
+          <a class="btn ghost" href="#faq">FAQ</a>
+        </div>
+        <div class="meta">
+          <span class="pill">Entrée : 5&nbsp;€</span>
+          <span class="pill">50 exposants • ~600 visiteurs</span>
+          <span class="pill">800&nbsp;m² • Restauration sur place</span>
+        </div>
+      </div>
+      <div>
+        <img class="hero-img" src="/images/bourse-dourdan-2026.jpg" alt="Affiche — 10ᵉ Bourse Horlogère de Dourdan, 22 novembre 2026"/>
+      </div>
+    </section>
+
+    <section class="paths" aria-label="Infos clés">
+      <article class="card">
+        <h3>→ Le rendez-vous</h3>
+        <p>La grande bourse horlogère en Île-de-France : collections, pièces, outillage et rencontres entre passionnés.</p>
+        <ul>
+          <li><strong>50 exposants</strong> sur <strong>800&nbsp;m²</strong> — environ <strong>600 visiteurs</strong> attendus.</li>
+          <li>Montres, horloges, pièces détachées, documentation et bonnes adresses.</li>
+          <li><strong>Restauration sur place</strong> pour profiter de la journée.</li>
+        </ul>
+
+        <div class="cta"><a class="btn" href="#faq">Voir la FAQ</a></div>
+      </article>
+
+      <article class="card">
+        <h3>→ Organisateurs <span class="badge">AFAHA</span></h3>
+        <p>La <strong>10ᵉ édition</strong> est organisée par le <strong>Lions Club de Dourdan</strong>, en <strong>partenariat avec l’AFAHA</strong>.</p>
+        <ul>
+          <li>Informations et <strong>inscriptions exposants</strong> : <a href="mailto:horloge.dourdan@gmail.com">horloge.dourdan@gmail.com</a></li>
+          <li>Accès facile en transports : <strong>RER&nbsp;C</strong>, station Dourdan.</li>
+        </ul>
+
+        <div class="cta"><a class="btn secondary" href="mailto:horloge.dourdan@gmail.com?subject=Inscriptions%20Bourse%20de%20Dourdan%202026">Écrire pour s’inscrire</a></div>
+      </article>
+    </section>
+
+    <section class="gallery" aria-label="Aperçu en images">
+      <h2 style="font-size:1.25rem;margin-bottom:.5rem">En images — Dourdan</h2>
+      <p class="note">Aperçu des précédentes éditions & de la salle.</p>
+      <div class="grid" style="margin-top:1rem">
+        <article class="prod">
+          <img src="/images/P1040296.JPG" alt="Vue générale — Bourse de Dourdan"/>
+          <div class="p"><h4>Vue générale</h4><p class="note">Éditions précédentes</p></div>
+        </article>
+        <article class="prod">
+          <img src="/images/P1040295.JPG" alt="Stands & exposants — Dourdan"/>
+          <div class="p"><h4>Stands & exposants</h4><p class="note">Grande surface, nombreux stands</p></div>
+        </article>
+        <article class="prod">
+          <img src="/images/P1040309.JPG" alt="Ambiance & échanges — Dourdan"/>
+          <div class="p"><h4>Ambiance</h4><p class="note">Rencontres & découvertes</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="lead" aria-label="Infos & rappel">
+      <div>
+        <h3 style="font-size:1.2rem">Recevoir les infos pratiques & rappel J-3</h3>
+        <p class="note">Adresse exacte, accès RER C, horaires, tarifs et rappel avant l’événement.</p>
+        <ul class="note" style="margin:.5rem 0 0 1rem">
+          <li>Plan & accès (RER&nbsp;C, arrêt Dourdan)</li>
+          <li>Tarif d’entrée (5&nbsp;€)</li>
+          <li>Rappel avant l’événement</li>
+        </ul>
+      </div>
+      <div>
+        <!-- Remplace action par ton endpoint (Formspree/Sendgrid) -->
+        <form action="#" method="POST">
+          <input type="email" name="email" placeholder="Votre email" required>
+          <button class="btn" type="submit">Recevoir les infos</button>
+        </form>
+        <p class="note" style="margin-top:.5rem">Zéro spam • Désinscription en 1 clic.</p>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <h2 style="font-size:1.25rem;margin-bottom:.5rem">Questions fréquentes</h2>
+      <details>
+  <summary>Où a lieu l’événement&nbsp;?</summary>
+  <p><strong>Salle des fêtes de Dourdan</strong>, rue d’Orsonville, 91410 Dourdan (800&nbsp;m²). Accès RER&nbsp;C, arrêt «&nbsp;Dourdan&nbsp;».</p>
+</details>
+<details>
+  <summary>Quels sont les horaires et le tarif&nbsp;?</summary>
+  <p>Dimanche <strong>22 novembre 2026</strong>, de <strong>10&nbsp;h à 17&nbsp;h</strong>. <strong>Entrée 5&nbsp;€</strong> (tarif communiqué par l’organisation).</p>
+</details>
+<details>
+  <summary>Y a-t-il de la restauration sur place&nbsp;?</summary>
+  <p>Oui, <strong>restauration sur place</strong> est prévue.</p>
+</details>
+<details>
+  <summary>Qui organise&nbsp;?</summary>
+  <p>Le <strong>Lions Club de Dourdan</strong>, en <strong>partenariat avec l’AFAHA</strong>.</p>
+</details>
+<details>
+  <summary>Contact et inscriptions&nbsp;?</summary>
+  <p><a href="mailto:horloge.dourdan@gmail.com">horloge.dourdan@gmail.com</a> — Bernard Pesneau (président du Lions Club de Dourdan)&nbsp;: <a href="tel:+33607703435">06&nbsp;07&nbsp;70&nbsp;34&nbsp;35</a>.</p>
+</details>
+
+    </section>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "10e Bourse Horlogère de Dourdan",
+        "startDate": "2026-11-22T10:00:00+01:00",
+        "endDate": "2026-11-22T17:00:00+01:00",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": "Salle des fêtes de Dourdan",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rue d’Orsonville",
+            "addressLocality": "Dourdan",
+            "postalCode": "91410",
+            "addressRegion": "Île-de-France",
+            "addressCountry": "FR"
+          }
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "Lions Club de Dourdan"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "5",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock"
+        },
+        "description": "10e édition : 50 exposants, environ 600 visiteurs sur 800 m². Partenariat AFAHA. Entrée 5 €. Restauration sur place. Infos : horloge.dourdan@gmail.com"
+      }
+    </script>
+  </main>
+
+  <!-- Sticky dual CTA dock -->
+  <div class="dock">
+    <div class="wrap">
+      <a class="btn" href="mailto:horloge.dourdan@gmail.com?subject=Infos%20Bourse%20de%20Dourdan" target="_blank" rel="noopener">Infos & contact</a>
+      <a class="btn secondary" href="#event">↑ Haut de page</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 — Bourse Horlogère de Dourdan • Informations publiques communiquées par l’organisation.</p>
+  </footer>
+</body>
+</html>

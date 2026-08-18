@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Focus — Amiens • L'agenda des bourses horlogères</title>
+<meta name="description" content="Bourse horlogère à Amiens — Dimanche 17 mai 2026. Organisée par l’association « Tout pour l’amateur de montres ». Infos et affiche."/>
+<meta property="og:title" content="Focus — Bourse horlogère à Amiens • 17 mai 2026" />
+<meta property="og:description" content="Association « Tout pour l’amateur de montres » — Amiens. Affiche et détails." />
+<meta property="og:image" content="/images/amiens.jpg" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="/styles-focus-shared.css">
+<style>
+  /* ========= RESET & BASE ========= */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#ffffff;--ink:#222;--muted:#666;--line:#eee;--brand:#111;--accent:#fcd62c;--success:#1e7f4f;--danger:#b00020;--radius:14px}
+  html,body{height:100%}
+  body{
+    font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
+    color:var(--ink);background:var(--bg);padding-top:42px; /* réserve pour la barre promo fixe */
+  }
+  a{color:var(--ink);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ========= BARRE PROMO ========= */
+  #promo-bar{position:fixed;top:0;left:0;right:0;background:#000;color:#fff;font-size:.9rem;line-height:1.4;text-align:center;padding:.5rem 1rem;z-index:100}
+  #promo-bar a{color:#fff;font-weight:600;text-decoration:underline;}
+
+  /* ========= HEADER ========= */
+  header{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid #eee;position:sticky;top:0;z-index:10;background:#fff}
+  .logo{font-size:1.3rem;font-weight:bold}
+  .burger{display:none;flex-direction:column;justify-content:space-around;width:30px;height:25px;cursor:pointer}
+  .burger span{display:block;height:3px;background:#333;border-radius:2px}
+  nav ul{list-style:none;display:flex;gap:1.5rem}
+  nav ul li{font-size:1rem;font-weight:500}
+
+  /* ========= PAGE ========= */
+  .wrap{max-width:1100px;margin:0 auto;padding:1rem 1.25rem}
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:2rem 0}
+  .hero h1{font-size:clamp(1.6rem,2.5vw,2.3rem);line-height:1.15;margin-bottom:.5rem}
+  .sub{color:var(--muted)}
+  .cta-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;background:#111;color:#fff;border-radius:10px;padding:.8rem 1rem;font-weight:700}
+  .btn.secondary{background:#fff;color:#111;border:1px solid #111}
+  .meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.75rem;color:#444}
+  .pill{display:inline-flex;align-items:center;gap:.4rem;background:#f6f6f6;border:1px solid var(--line);border-radius:999px;padding:.35rem .6rem;font-size:.85rem}
+  .hero-img{width:100%;height:auto;border-radius:var(--radius);border:1px solid var(--line)} /* pas de crop */
+
+  .timer{display:flex;gap:.5rem;margin-top:1rem}
+  .tile{flex:1;min-width:90px;background:#0f0f0f;color:#fff;border-radius:12px;padding:.75rem;text-align:center}
+  .tile span{display:block}
+  .tile .n{font-size:1.4rem;font-weight:800}
+  .tile .l{font-size:.8rem;color:#ddd}
+
+  .paths{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+  .card{border:1px solid var(--line);border-radius:var(--radius);padding:1rem;background:#fff}
+  .card h3{font-size:1.15rem;margin-bottom:.35rem}
+  .card p{color:var(--muted)}
+  .card ul{margin-top:.5rem;padding-left:1rem;color:#444}
+  .card .cta{margin-top:.75rem}
+
+  footer{margin:2rem 0;color:#777;text-align:center}
+
+  /* ========= MEDIA QUERIES ========= */
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr}
+    .paths{grid-template-columns:1fr}
+  }
+  @media (max-width:768px){
+    header{flex-direction:column;justify-content:center;gap:.5rem}
+    .burger{display:flex;position:static}
+    nav ul{
+      display:none;position:absolute;top:60px;left:0;right:0;background:#fff;
+      flex-direction:column;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid #eee;
+    }
+    nav ul.open{display:flex}
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded',()=>{
+    // Burger
+    const b=document.querySelector('.burger'), ul=document.querySelector('nav ul');
+    if(b&&ul){ b.addEventListener('click',()=>{b.classList.toggle('open');ul.classList.toggle('open')}); }
+
+    // Countdown — 17 mai 2026 à 10:00 (CEST, +02:00)
+    const target = new Date('2026-05-17T10:00:00+02:00').getTime();
+    const d=document.querySelector('#d'),h=document.querySelector('#h'),m=document.querySelector('#m'),s=document.querySelector('#s');
+    const tick=()=>{const now=Date.now();let t=Math.max(0,target-now);
+      const D=Math.floor(t/86400000); t-=D*86400000;
+      const H=Math.floor(t/3600000);  t-=H*3600000;
+      const M=Math.floor(t/60000);    t-=M*60000;
+      const S=Math.floor(t/1000);
+      d.textContent=D; h.textContent=String(H).padStart(2,'0'); m.textContent=String(M).padStart(2,'0'); s.textContent=String(S).padStart(2,'0');
+    }; tick(); setInterval(tick,1000);
+  });
+</script>
+</head>
+<body>
+  <!-- Promo identique -->
+  <div id="promo-bar">Vous organisez une bourse&nbsp;? <a href="mailto:contact@lagenda-des-bourses-horlogeres.com?subject=Mise%20en%20avant%20sur%20l'agenda">Contactez-nous&nbsp;!</a></div>
+
+  <!-- Header identique -->
+  <header>
+    <div class="logo">L'agenda des bourses horlogères</div>
+    <div class="burger" aria-label="Ouvrir le menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/focus.html">Focus</a></li>
+        <li><a href="/index.html#agenda">Agenda</a></li>
+        <li><a href="/index.html#about">Qui sommes-nous ?</a></li>
+        <li><a href="/index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenu -->
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <h1>Bourse horlogère — Amiens</h1>
+        <p class="sub">Dimanche 17 mai 2026 • Amiens (Somme) — lieu et horaires précis sur l’affiche ci-contre</p>
+
+        <div class="timer" aria-label="Compte à rebours" style="display:flex;gap:.5rem;margin-top:1rem">
+          <div class="tile"><span class="n" id="d">—</span><span class="l">jours</span></div>
+          <div class="tile"><span class="n" id="h">—</span><span class="l">heures</span></div>
+          <div class="tile"><span class="n" id="m">—</span><span class="l">minutes</span></div>
+          <div class="tile"><span class="n" id="s">—</span><span class="l">secondes</span></div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn" href="/index.html#agenda">Voir dans l’agenda</a>
+          <a class="btn secondary" href="#faq">FAQ</a>
+        </div>
+
+        <div class="meta">
+          <span class="pill">Organisée par l’association « Tout pour l’amateur de montres »</span>
+          <span class="pill">Amiens</span>
+        </div>
+      </div>
+
+      <div>
+        <img class="hero-img" src="/images/amiens.jpg" alt="Affiche — Bourse horlogère à Amiens, 17 mai 2026">
+      </div>
+    </section>
+
+    <section class="paths">
+      <article class="card">
+        <h3>→ Côté événement</h3>
+        <p>Bourse horlogère à Amiens, portée par des passionnés pour les passionnés.</p>
+        <ul>
+          <li>Dimanche 17 mai 2026</li>
+          <li>Détails pratiques sur l’affiche</li>
+        </ul>
+        <div class="cta"><a class="btn" href="/images/amiens.jpg" target="_blank" rel="noopener">Ouvrir l’affiche</a></div>
+      </article>
+
+      <article class="card">
+        <h3>→ Organisateurs</h3>
+        <p>Association « Tout pour l’amateur de montres », basée à Amiens.</p>
+        <ul>
+          <li>Président : Gilles</li>
+          <li>Secrétariat : Hubert</li>
+        </ul>
+        <div class="cta"><a class="btn secondary" href="/index.html#contact">Une question pour l’agenda&nbsp;?</a></div>
+      </article>
+    </section>
+
+    <section class="faq" id="faq" style="margin-top:2rem">
+      <h2 style="font-size:1.25rem;margin-bottom:.5rem">Questions fréquentes</h2>
+      <details><summary>Horaires &amp; lieu</summary><p>Retrouvez l’adresse exacte et les horaires sur l’affiche (image ci-dessus).</p></details>
+      <details><summary>Contact organisateurs</summary><p>Pour joindre l’association, utilisez les coordonnées indiquées sur l’affiche ou présentez-vous sur place le jour J.</p></details>
+      <details><summary>Mise en avant sur ce site</summary><p>Cette page fait partie de l’agenda des bourses horlogères. Pour toute demande liée au site&nbsp;: <a href="/index.html#contact">rubrique contact</a>.</p></details>
+    </section>
+  </main>
+
+  <footer>© 2025 — Association Horlogère de Bretagne × L’HorloBroc</footer>
+</body>
+</html>

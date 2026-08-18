@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Focus — 5 octobre à Saint-Malo • Association Horlogère de Bretagne × L’HorloBroc</title>
+  <meta name="description" content="Page Focus : mettez la date du 5 octobre à Saint-Malo dans votre agenda, découvrez le programme de la Bourse Horlogère de Bretagne et explorez la sélection L’HorloBroc."/>
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Focus — 5 octobre à Saint-Malo"/>
+  <meta property="og:description" content="Infos & billetterie + sélection L’HorloBroc (vintage & révision)."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="/images/focus-cover.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <style>
+    /* ========= RESET & BASE ========= */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#ffffff;--ink:#222;--muted:#666;--line:#eee;--brand:#111;--accent:#fcd62c;--success:#1e7f4f;--danger:#b00020;--radius:14px
+    }
+    html,body{height:100%}
+    body{
+      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);background:var(--bg);
+      /* aligné sur index: réserve pour la barre promo fixe */
+      padding-top:42px;
+    }
+    a{color:var(--ink);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* ========= BARRE PROMO (copie index) ========= */
+    #promo-bar{
+      position:fixed;top:0;left:0;right:0;
+      background:#000;color:#fff;font-size:.9rem;line-height:1.4;
+      text-align:center;padding:.5rem 1rem;z-index:100;
+    }
+    #promo-bar a{color:#fff;font-weight:600;text-decoration:underline;}
+
+    /* ========= HEADER (copie index) ========= */
+    header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:1rem 2rem;border-bottom:1px solid #eee;
+      position:sticky;top:0;z-index:10;background:#fff;
+    }
+    .logo{font-size:1.3rem;font-weight:bold}
+    .burger{display:none;flex-direction:column;justify-content:space-around;width:30px;height:25px;cursor:pointer}
+    .burger span{display:block;height:3px;background:#333;border-radius:2px}
+
+    nav ul{list-style:none;display:flex;gap:1.5rem}
+    nav ul li{font-size:1rem;font-weight:500}
+
+    /* ========= MISE EN PAGE SPÉCIFIQUE FOCUS (conservée) ========= */
+    .wrap{max-width:1100px;margin:0 auto;padding:1rem 1.25rem}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:2rem 0}
+    .hero h1{font-size:clamp(1.6rem,2.5vw,2.3rem);line-height:1.15;margin-bottom:.5rem}
+    .sub{color:var(--muted)}
+    .cta-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;background:#111;color:#fff;border-radius:10px;padding:.8rem 1rem;font-weight:700}
+    .btn.secondary{background:#fff;color:#111;border:1px solid #111}
+    .btn.ghost{background:#fff;border:1px dashed #aaa;color:#333}
+    .meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.75rem;color:#444}
+    .pill{display:inline-flex;align-items:center;gap:.4rem;background:#f6f6f6;border:1px solid var(--line);border-radius:999px;padding:.35rem .6rem;font-size:.85rem}
+    .hero-img{
+  width: 100%;
+  height: auto;          /* conserve les proportions réelles */
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  /* on supprime ces deux lignes qui croppaient l’affiche :
+     aspect-ratio: 4/3;
+     object-fit: cover;
+  */
+}
+    .timer{display:flex;gap:.5rem;margin-top:1rem}
+    .tile{flex:1;min-width:90px;background:#0f0f0f;color:#fff;border-radius:12px;padding:.75rem;text-align:center}
+    .tile span{display:block}
+    .tile .n{font-size:1.4rem;font-weight:800}
+    .tile .l{font-size:.8rem;color:#ddd}
+
+    .paths{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+    .card{border:1px solid var(--line);border-radius:var(--radius);padding:1rem;background:#fff}
+    .card h3{font-size:1.15rem;margin-bottom:.35rem}
+    .card p{color:var(--muted)}
+    .card .cta{margin-top:.75rem}
+    .card ul{margin-top:.5rem;padding-left:1rem;color:#444}
+    .badge{display:inline-block;background:#eef8f1;border:1px solid #cfe9da;color:var(--success);font-weight:700;border-radius:999px;padding:.15rem .5rem;font-size:.75rem}
+
+    .shop{margin-top:2rem}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .prod{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff}
+    .prod img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+    .prod .p{padding:.75rem}
+    .prod h4{font-size:1rem}
+    .price{color:#000;font-weight:800}
+    .note{font-size:.85rem;color:#555}
+    .cta-inline{margin-top:.5rem;display:flex;gap:.5rem;flex-wrap:wrap}
+
+    .lead{display:grid;grid-template-columns:1.15fr .85fr;gap:1rem;align-items:center;margin-top:2rem;border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+    .lead form{display:flex;gap:.5rem}
+    input[type=email]{flex:1;border:1px solid #ccc;border-radius:10px;padding:.8rem}
+
+    .faq{margin-top:2rem}
+    details{border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;background:#fff}
+    details+details{margin-top:.5rem}
+    summary{font-weight:700;cursor:pointer}
+    details p{margin-top:.5rem;color:#444}
+
+    .dock{position:sticky;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--line)}
+    .dock .wrap{display:flex;gap:.5rem;justify-content:space-between;align-items:center}
+    .dock .btn{flex:1;justify-content:center}
+
+    footer{margin:2rem 0;color:#777;text-align:center}
+
+    /* ========= MEDIA QUERIES ========= */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .paths{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+      .lead{grid-template-columns:1fr}
+    }
+    /* Media queries MOBILE du header (copie index) */
+    @media (max-width:768px){
+      header{flex-direction:column;justify-content:center;gap:.5rem}
+      .burger{display:flex;position:static}
+      nav ul{
+        display:none;position:absolute;top:60px;left:0;right:0;background:#fff;
+        flex-direction:column;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid #eee;
+      }
+      nav ul.open{display:flex}
+    }
+    @media (max-width:580px){
+      .grid{grid-template-columns:1fr}
+      /* header déjà top:0 via index */
+    }
+
+    
+  </style>
+
+  <!-- Countdown & ICS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const target = new Date('2025-10-05T10:00:00+02:00').getTime();
+      const d = document.querySelector('#d'), h = document.querySelector('#h'),
+            m = document.querySelector('#m'), s = document.querySelector('#s');
+      const tick = ()=>{
+        const now = Date.now();
+        let t = Math.max(0, target - now);
+        const days = Math.floor(t / 86400000); t -= days*86400000;
+        const hours = Math.floor(t / 3600000); t -= hours*3600000;
+        const mins = Math.floor(t / 60000); t -= mins*60000;
+        const secs = Math.floor(t / 1000);
+        d.textContent = String(days);
+        h.textContent = String(hours).padStart(2,'0');
+        m.textContent = String(mins).padStart(2,'0');
+        s.textContent = String(secs).padStart(2,'0');
+      };
+      tick(); setInterval(tick, 1000);
+
+      const icsBtn = document.getElementById('ics');
+      if (icsBtn){
+        const dtStart = '20251005T080000Z', dtEnd = '20251005T150000Z';
+        const ics = [
+          'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//AHB//Focus//FR',
+          'BEGIN:VEVENT',
+          'UID:ahb-2025-saintmalo@association-horlogere-bretagne.com',
+          'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z',
+          'DTSTART:'+dtStart,'DTEND:'+dtEnd,
+          'SUMMARY:Première Bourse Horlogère de Bretagne',
+          'LOCATION:Halle aux Blés, Intra-Muros, Saint-Malo',
+          'DESCRIPTION:Salon horloger — Association Horlogère de Bretagne. Billetterie et infos sur association-horlogere-bretagne.com',
+          'END:VEVENT','END:VCALENDAR'
+        ].join('\n');
+        const url = URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));
+        icsBtn.href = url; icsBtn.download = 'bourse-horlogere-bretagne-2025-10-05.ics';
+      }
+    });
+  </script>
+
+  <!-- Burger menu (copié depuis index) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const burger = document.querySelector('.burger');
+      const navUl = document.querySelector('nav ul');
+      if(!burger || !navUl) return;
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('open');
+        navUl.classList.toggle('open');
+      });
+      navUl.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navUl.classList.contains('open')) {
+            navUl.classList.remove('open');
+            burger.classList.remove('open');
+          }
+        });
+      });
+    });
+  </script>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3F2178T14"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-D3F2178T14');
+</script>
+
+<body>
+  <!-- BARRE PROMO (identique index) -->
+  <div id="promo-bar">Vous organisez une bourse&nbsp;? <a href="mailto:contact@lagenda-des-bourses-horlogeres.com?subject=Mise%20en%20avant%20sur%20l'agenda">Contactez-nous&nbsp;!</a></div>
+
+  <!-- HEADER (identique index) -->
+  <header>
+    <div class="logo">L'agenda des bourses horlogères</div>
+    <div class="burger" aria-label="Ouvrir le menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/focus.html">Focus</a></li>
+        <li><a href="/index.html#agenda">Agenda</a></li>
+        <li><a href="/index.html#about">Qui sommes-nous ?</a></li>
+        <li><a href="/index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ======= CONTENU FOCUS (inchangé) ======= -->
+  <main class="wrap">
+    <section class="hero" id="event">
+      <div>
+        <h1>Première Bourse Horlogère de Bretagne — Saint-Malo</h1>
+        <p class="sub">Dimanche 5 octobre 2025 • Halle aux Blés (Intra-Muros) • 09:00 → 18:00</p>
+        <div class="timer" aria-label="Compte à rebours">
+          <div class="tile"><span class="n" id="d">—</span><span class="l">jours</span></div>
+          <div class="tile"><span class="n" id="h">—</span><span class="l">heures</span></div>
+          <div class="tile"><span class="n" id="m">—</span><span class="l">minutes</span></div>
+          <div class="tile"><span class="n" id="s">—</span><span class="l">secondes</span></div>
+        </div>
+        <div class="cta-row" style="margin-top:1rem">
+          <a class="btn" href="https://association-horlogere-bretagne.com/?utm_source=focus&utm_medium=landing&utm_campaign=event-5oct" target="_blank" rel="noopener">Infos & billetterie</a>
+          <a id="ics" class="btn secondary" href="#">+ Ajouter à mon agenda</a>
+          <a class="btn ghost" href="#faq">FAQ</a>
+        </div>
+        <div class="meta">
+          <span class="pill">Entrée : 3 € (5 € concours)</span>
+          <span class="pill">Adresse : Halle aux Blés, Intra-Muros</span>
+          <span class="pill">Contact : contact@association-horlogere-bretagne.com</span>
+        </div>
+      </div>
+      <div>
+        <img class="hero-img" src="/images/affiche-bourse-horlogere-bretonne-bretagne-saint-malo.png" alt="Halle aux Blés, Saint-Malo"/>
+      </div>
+    </section>
+
+    <section class="paths" aria-label="Deux parcours">
+      <article class="card">
+        <h3>→ Côté Événement</h3>
+        <p>Programme, exposants, concours, infos pratiques (parking, horaires, accès).</p>
+        <ul>
+          <li>Carte interactive & logistique</li>
+          <li>Concours photo & montre du public</li>
+          <li>Stand AHB & adhésions</li>
+        </ul>
+        <div class="cta"><a class="btn" href="https://association-horlogere-bretagne.com/?utm_source=focus&utm_medium=card&utm_campaign=event-5oct" target="_blank" rel="noopener">Voir le site AHB</a></div>
+      </article>
+
+      <article class="card">
+        <h3>→ Côté Boutique <span class="badge">Sélection spéciale</span></h3>
+        <p>Préparez votre visite : révisions, bracelets, et une sélection de montres prête à essayer le jour J.</p>
+        <ul>
+          <li>Révision & diagnostic offerts* sur place</li>
+          <li>Bracelets cuir & NATO — tailles à la demande</li>
+          <li>Réservations click-&-collect pour le 5/10</li>
+        </ul>
+        <div class="cta"><a class="btn" href="https://lhorlobroc.shop/collections/nouveautes" target="_blank" rel="noopener">Découvrir la sélection</a></div>
+      </article>
+    </section>
+
+    <section class="shop" aria-label="Sélection L’HorloBroc">
+      <h2 style="font-size:1.25rem;margin-bottom:.5rem">Sélection à retirer le 5/10</h2>
+      <p class="note">Réservez maintenant, essayez et retirez à la Halle aux Blés. *Diagnostic visuel gratuit, sur place.</p>
+      <div class="grid" style="margin-top:1rem">
+        <article class="prod">
+          <img src="/images/acutron-horobroc.jpg" alt="Bulova Acutron"/>
+          <div class="p">
+            <h4>Bulova Acutron</h4>
+            <div class="price">750 €</div>
+            <p class="note">Révision atelier + garantie 12 mois</p>
+            <div class="cta-inline">
+              <a class="btn" href="https://lhorlobroc.shop/products/bulova-acutron?variant=51114632806666" target="_blank" rel="noopener">Réserver</a>
+              <a class="btn secondary" href="mailto:contact@lhorlobroc.shop?subject=Question%20Bulova Acutron%20—%20Focus&body=Bonjour%2C%20je%20souhaite%20des%20infos%20suppl%C3%A9mentaires%20sur%20la%E2%80%99Bulova Acutron.%20Merci.">Poser une question</a>
+            </div>
+          </div>
+        </article>
+        <article class="prod">
+          <img src="/images/buren-superslender.jpg" alt="BUREN SUPERSLENDER"/>
+          <div class="p">
+            <h4>BUREN SUPERSLENDER</h4>
+            <div class="price">820 €</div>
+            <p class="note">Réglée, prête à porter</p>
+            <div class="cta-inline">
+              <a class="btn" href="https://lhorlobroc.shop/products/buren-superslender?variant=51114614227210" target="_blank" rel="noopener">Réserver</a>
+              <a class="btn secondary" href="mailto:contact@lhorlobroc.shop?subject=Question%20Buren Superslender%20—%20Focus">Poser une question</a>
+            </div>
+          </div>
+        </article>
+        <article class="prod">
+          <img src="/images/omega-constellation-manhattan.jpg" alt="Omega Constellation Manhattan"/>
+          <div class="p">
+            <h4>Omega Constellation Manhattan</h4>
+            <div class="price">1 200 €</div>
+            <p class="note">Révision atelier + garantie 12 mois</p>
+            <div class="cta-inline">
+              <a class="btn" href="https://lhorlobroc.shop/products/omega-constellation-manhattan?variant=51114539745546" target="_blank" rel="noopener">Réserver</a>
+              <a class="btn secondary" href="mailto:contact@lhorlobroc.shop?subject=Question%20Omega Constellation Manhattan Focus">Poser une question</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="lead" aria-label="Guide & alerte stock">
+      <div>
+        <h3 style="font-size:1.2rem">Recevoir la short-list « Première vintage < 500 € »</h3>
+        <p class="note">Un PDF ultra-concis (réfs fiables, calibres éprouvés, tailles portables) + alerte en avant-première des pièces qui rentrent avant la bourse.</p>
+        <ul class="note" style="margin:.5rem 0 0 1rem">
+          <li>3 modèles sûrs • 2 alternatives</li>
+          <li>Checklist d’inspection</li>
+          <li>Guide des tailles & bracelets</li>
+        </ul>
+      </div>
+      <div>
+        <form action="https://formspree.io/f/xeqwpzkn" method="POST">
+          <input type="email" name="email" placeholder="Votre email" required>
+          <button class="btn" type="submit">Recevoir le PDF</button>
+        </form>
+        <p class="note" style="margin-top:.5rem">Zéro spam • Désinscription en 1 clic.</p>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <h2 style="font-size:1.25rem;margin-bottom:.5rem">Questions fréquentes</h2>
+      <details>
+        <summary>Où se garer à proximité ?</summary>
+        <p>Parkings Intra-Muros (St-Vincent, St-Louis) + zones extérieures avec navettes. Prévoyez 10–12 min à pied.</p>
+      </details>
+      <details>
+        <summary>Puis-je faire réviser ma montre sur place ?</summary>
+        <p>Nous réalisons un diagnostic visuel gratuit. Les révisions complètes sont déposées et suivies à l’atelier L’HorloBroc.</p>
+      </details>
+      <details>
+        <summary>Comment réserver une montre pour le 5/10 ?</summary>
+        <p>Utilisez le bouton « Réserver » sur la fiche produit (acompte sécurisé). Retrait et essai le jour J à notre stand.</p>
+      </details>
+    </section>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Première Bourse Horlogère de Bretagne",
+        "startDate": "2025-10-05T10:00:00+02:00",
+        "endDate": "2025-10-05T17:00:00+02:00",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": "Halle aux Blés",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Saint-Malo",
+            "addressRegion": "Bretagne",
+            "addressCountry": "FR"
+          }
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "Association Horlogère de Bretagne",
+          "url": "https://association-horlogere-bretagne.com/"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "3",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    </script>
+  </main>
+
+  <!-- Sticky dual CTA dock (inchangé) -->
+  <div class="dock">
+    <div class="wrap">
+      <a class="btn" href="https://association-horlogere-bretagne.com/?utm_source=focus&utm_medium=dock&utm_campaign=event-5oct" target="_blank" rel="noopener">Infos & billetterie</a>
+      <a class="btn secondary" href="https://lhorlobroc.shop/?utm_source=focus&utm_medium=dock&utm_campaign=selection-5oct" target="_blank" rel="noopener">Sélection L’HorloBroc</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 — Association Horlogère de Bretagne × L’HorloBroc</p>
+  </footer>
+</body>
+</html>

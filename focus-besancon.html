@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Focus — 20 juin à Besançon • 12ᵉ Bourse Horlogère de Besançon</title>
+    <meta name="description"
+        content="Page Focus : 12ᵉ Bourse Horlogère de Besançon — Samedi 20 juin 2026, Kursaal, dans le cadre des 24h du Temps. Entrée gratuite. ~40 exposants." />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content="Focus — Bourse Horlogère de Besançon • 20 juin 2026" />
+    <meta property="og:description"
+        content="12ᵉ édition — Kursaal, Besançon • 10:00 → 17:00 • Entrée gratuite • ~40 exposants • Dans le cadre des 24h du Temps." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <style>
+        /* ========= RESET & BASE ========= */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --bg: #ffffff;
+            --ink: #222;
+            --muted: #666;
+            --line: #eee;
+            --brand: #111;
+            --accent: #1e3a5f;
+            --success: #1e7f4f;
+            --danger: #b00020;
+            --radius: 14px
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--ink);
+            background: var(--bg);
+            padding-top: 42px;
+        }
+
+        a {
+            color: var(--ink);
+            text-decoration: none
+        }
+
+        a:hover {
+            text-decoration: underline
+        }
+
+        /* ========= BARRE PROMO ========= */
+        #promo-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #000;
+            color: #fff;
+            font-size: .9rem;
+            line-height: 1.4;
+            text-align: center;
+            padding: .5rem 1rem;
+            z-index: 100;
+        }
+
+        #promo-bar a {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        /* ========= HEADER ========= */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #fff;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold
+        }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer
+        }
+
+        .burger span {
+            display: block;
+            height: 3px;
+            background: #333;
+            border-radius: 2px
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem
+        }
+
+        nav ul li {
+            font-size: 1rem;
+            font-weight: 500
+        }
+
+        /* ========= LAYOUT FOCUS ========= */
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem 1.25rem
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem 0
+        }
+
+        .hero h1 {
+            font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+            line-height: 1.15;
+            margin-bottom: .5rem
+        }
+
+        .sub {
+            color: var(--muted)
+        }
+
+        .cta-row {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+            margin-top: 1rem
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: #1e3a5f;
+            color: #fff;
+            border-radius: 10px;
+            padding: .8rem 1rem;
+            font-weight: 700
+        }
+
+        .btn.secondary {
+            background: #fff;
+            color: #1e3a5f;
+            border: 1px solid #1e3a5f
+        }
+
+        .btn.ghost {
+            background: #fff;
+            border: 1px dashed #aaa;
+            color: #333
+        }
+
+        .meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: .75rem;
+            color: #444
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            background: #f6f6f6;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: .35rem .6rem;
+            font-size: .85rem
+        }
+
+        .hero-img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--line);
+        }
+
+        .timer {
+            display: flex;
+            gap: .5rem;
+            margin-top: 1rem
+        }
+
+        .tile {
+            flex: 1;
+            min-width: 90px;
+            background: #1e3a5f;
+            color: #fff;
+            border-radius: 12px;
+            padding: .75rem;
+            text-align: center
+        }
+
+        .tile span {
+            display: block
+        }
+
+        .tile .n {
+            font-size: 1.4rem;
+            font-weight: 800
+        }
+
+        .tile .l {
+            font-size: .8rem;
+            color: #b8d4f0
+        }
+
+        .paths {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 1rem;
+            background: #fff
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            margin-bottom: .35rem
+        }
+
+        .card p {
+            color: var(--muted)
+        }
+
+        .card .cta {
+            margin-top: .75rem
+        }
+
+        .card ul {
+            margin-top: .5rem;
+            padding-left: 1rem;
+            color: #444
+        }
+
+        .badge {
+            display: inline-block;
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            font-weight: 700;
+            border-radius: 999px;
+            padding: .15rem .5rem;
+            font-size: .75rem
+        }
+
+        .faq {
+            margin-top: 2rem
+        }
+
+        details {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: .85rem 1rem;
+            background: #fff
+        }
+
+        details+details {
+            margin-top: .5rem
+        }
+
+        summary {
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        details p {
+            margin-top: .5rem;
+            color: #444
+        }
+
+        .dock {
+            position: sticky;
+            bottom: 0;
+            z-index: 30;
+            background: #fff;
+            border-top: 1px solid var(--line)
+        }
+
+        .dock .wrap {
+            display: flex;
+            gap: .5rem;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .dock .btn {
+            flex: 1;
+            justify-content: center
+        }
+
+        footer {
+            margin: 2rem 0;
+            color: #777;
+            text-align: center
+        }
+
+        /* ========= MEDIA QUERIES ========= */
+        @media (max-width:900px) {
+            .hero {
+                grid-template-columns: 1fr
+            }
+
+            .paths {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media (max-width:768px) {
+            header {
+                flex-direction: column;
+                justify-content: center;
+                gap: .5rem
+            }
+
+            .burger {
+                display: flex;
+                position: static
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            nav ul.open {
+                display: flex
+            }
+        }
+    </style>
+
+    <!-- Countdown & ICS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Besançon — 20 juin 2026, 10:00 → 17:00 (Europe/Paris, UTC+02)
+            const target = new Date('2026-06-20T10:00:00+02:00').getTime();
+            const d = document.querySelector('#d'), h = document.querySelector('#h'),
+                m = document.querySelector('#m'), s = document.querySelector('#s');
+            const tick = () => {
+                const now = Date.now();
+                let t = Math.max(0, target - now);
+                const days = Math.floor(t / 86400000); t -= days * 86400000;
+                const hours = Math.floor(t / 3600000); t -= hours * 3600000;
+                const mins = Math.floor(t / 60000); t -= mins * 60000;
+                const secs = Math.floor(t / 1000);
+                d.textContent = String(days);
+                h.textContent = String(hours).padStart(2, '0');
+                m.textContent = String(mins).padStart(2, '0');
+                s.textContent = String(secs).padStart(2, '0');
+            };
+            tick(); setInterval(tick, 1000);
+
+            // ICS
+            const icsBtn = document.getElementById('ics');
+            if (icsBtn) {
+                const dtStart = '20260620T080000Z', dtEnd = '20260620T150000Z'; // 10:00–17:00 CEST
+                const ics = [
+                    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//AFAHA//Focus Besancon//FR',
+                    'BEGIN:VEVENT',
+                    'UID:afaha-2026-besancon@agenda-bourses-horlogeres',
+                    'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
+                    'DTSTART:' + dtStart, 'DTEND:' + dtEnd,
+                    'SUMMARY:12ᵉ Bourse Horlogère de Besançon — 24h du Temps',
+                    'LOCATION:Kursaal, Place du Casino, 25000 Besançon',
+                    'DESCRIPTION:~40 exposants — Entrée gratuite — Dans le cadre des 24h du Temps. Organisé par l\\'AFAHA.',
+          'END:VEVENT', 'END:VCALENDAR'
+                ].join('\n');
+                const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+                icsBtn.href = url; icsBtn.download = 'bourse-horlogere-besancon-2026-06-20.ics';
+            }
+        });
+    </script>
+
+    <!-- Burger menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.burger');
+            const navUl = document.querySelector('nav ul');
+            if (!burger || !navUl) return;
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('open');
+                navUl.classList.toggle('open');
+            });
+            navUl.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navUl.classList.contains('open')) {
+                        navUl.classList.remove('open');
+                        burger.classList.remove('open');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3F2178T14"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-D3F2178T14');
+</script>
+
+<body>
+    <!-- BARRE PROMO -->
+    <div id="promo-bar">Vous organisez une bourse&nbsp;? <a
+            href="mailto:contact@lagenda-des-bourses-horlogeres.com?subject=Mise%20en%20avant%20sur%20l'agenda">Contactez-nous&nbsp;!</a>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">L'agenda des bourses horlogères</div>
+        <div class="burger" aria-label="Ouvrir le menu" aria-expanded="false" role="button" tabindex="0">
+            <span></span><span></span><span></span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/focus.html">Focus</a></li>
+                <li><a href="/index.html#agenda">Agenda</a></li>
+                <li><a href="/index.html#about">Qui sommes-nous ?</a></li>
+                <li><a href="/index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ======= CONTENU FOCUS ======= -->
+    <main class="wrap">
+        <section class="hero" id="event">
+            <div>
+                <h1>12ᵉ Bourse Horlogère de Besançon</h1>
+                <p class="sub">Samedi 20 juin 2026 • Kursaal, Place du Casino, 25000 Besançon • 10:00 → 17:00 • Dans le
+                    cadre des <strong>24h du Temps</strong></p>
+                <div class="timer" aria-label="Compte à rebours">
+                    <div class="tile"><span class="n" id="d">—</span><span class="l">jours</span></div>
+                    <div class="tile"><span class="n" id="h">—</span><span class="l">heures</span></div>
+                    <div class="tile"><span class="n" id="m">—</span><span class="l">minutes</span></div>
+                    <div class="tile"><span class="n" id="s">—</span><span class="l">secondes</span></div>
+                </div>
+                <div class="cta-row" style="margin-top:1rem">
+                    <a class="btn" href="https://www.les24hdutemps.fr/" target="_blank" rel="noopener">Site officiel —
+                        24h du Temps</a>
+                    <a id="ics" class="btn secondary" href="#">+ Ajouter à mon agenda</a>
+                    <a class="btn ghost" href="#faq">FAQ</a>
+                </div>
+                <div class="meta">
+                    <span class="pill">🎟️ Entrée gratuite</span>
+                    <span class="pill">~40 exposants</span>
+                    <span class="pill">Organisé par l'AFAHA</span>
+                </div>
+            </div>
+            <div>
+                <img class="hero-img" src="/image_placeholder.jpg" alt="Kursaal de Besançon — Bourse horlogère" />
+            </div>
+        </section>
+
+        <section class="paths" aria-label="Deux parcours">
+            <article class="card">
+                <h3>→ Côté Bourse Horlogère</h3>
+                <p>Le rendez-vous annuel des passionnés d'horlogerie dans la capitale française de l'horlogerie.</p>
+                <ul>
+                    <li>Pendules, montres anciennes et modernes</li>
+                    <li>Documentation et ouvrages spécialisés</li>
+                    <li>~40 exposants de toute la France</li>
+                    <li>Organisé par l'AFAHA depuis 2015</li>
+                </ul>
+                <div class="cta"><a class="btn" href="#faq">Voir la FAQ</a></div>
+            </article>
+
+            <article class="card">
+                <h3>→ Côté 24h du Temps <span class="badge">Festival</span></h3>
+                <p>La bourse s'inscrit dans le festival « Les 24h du Temps », célébrant l'horlogerie bisontine.</p>
+                <ul>
+                    <li>Conférences et ateliers horlogers</li>
+                    <li>Expositions au Musée du Temps</li>
+                    <li>Visites du Palais Granvelle</li>
+                    <li>Animations tout le week-end</li>
+                </ul>
+                <div class="cta"><a class="btn secondary" href="https://www.besancon.fr/" target="_blank"
+                        rel="noopener">Découvrir Besançon</a></div>
+            </article>
+        </section>
+
+        <section class="faq" id="faq">
+            <h2 style="font-size:1.25rem;margin-bottom:.5rem">Questions fréquentes</h2>
+            <details>
+                <summary>Où a lieu l'événement&nbsp;?</summary>
+                <p>Kursaal, Place du Casino, 25000 Besançon. Salle de spectacle emblématique au cœur de la ville.</p>
+            </details>
+            <details>
+                <summary>Quels sont les horaires et les tarifs&nbsp;?</summary>
+                <p>Samedi 20 juin 2026, de 10:00 à 17:00. <strong>Entrée gratuite</strong> pour tous.</p>
+            </details>
+            <details>
+                <summary>Comment s'y rendre&nbsp;?</summary>
+                <p>En train : gare de Besançon-Viotte (TGV) puis tramway ligne 1. En voiture : A36 sortie
+                    Besançon-Centre. Parkings à proximité.</p>
+            </details>
+            <details>
+                <summary>Qui organise&nbsp;?</summary>
+                <p>L'Association Française des Amateurs d'Horlogerie Ancienne (AFAHA), dans le cadre des « 24h du Temps
+                    » organisées par la Ville de Besançon.</p>
+            </details>
+            <details>
+                <summary>Pourquoi Besançon&nbsp;?</summary>
+                <p>Besançon est la capitale historique de l'horlogerie française. La ville accueille le Musée du Temps
+                    et a été le berceau de l'industrie horlogère nationale depuis le XVIIIᵉ siècle.</p>
+            </details>
+        </section>
+
+        <!-- Structured Data -->
+        <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "12e Bourse Horlogère de Besançon — 24h du Temps",
+        "startDate": "2026-06-20T10:00:00+02:00",
+        "endDate": "2026-06-20T17:00:00+02:00",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": "Kursaal",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Place du Casino",
+            "addressLocality": "Besançon",
+            "postalCode": "25000",
+            "addressRegion": "Bourgogne-Franche-Comté",
+            "addressCountry": "FR"
+          }
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "AFAHA — Association Française des Amateurs d'Horlogerie Ancienne"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock"
+        },
+        "description": "12ᵉ édition de la Bourse Horlogère de Besançon — ~40 exposants, entrée gratuite, dans le cadre des 24h du Temps."
+      }
+    </script>
+    </main>
+
+    <!-- Sticky dual CTA dock -->
+    <div class="dock">
+        <div class="wrap">
+            <a class="btn" href="https://www.les24hdutemps.fr/" target="_blank" rel="noopener">Site officiel</a>
+            <a class="btn secondary" href="#event">↑ Haut de page</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 — Bourse Horlogère de Besançon • Les 24h du Temps • AFAHA</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Affiches — L'agenda des bourses horlogères</title>
+<meta name="description" content="Aperçus des affiches par ville. Cliquez pour les détails et la billetterie."/>
+<style>
+  /* RESET & BASE */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--bg:#fff;--ink:#222;--muted:#666;--line:#eee;--brand:#111;--accent:#fcd62c;--radius:14px}
+  html,body{height:100%}
+  body{font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:var(--ink);background:var(--bg);padding-top:42px}
+  a{color:inherit;text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* BARRE PROMO — identique */
+  #promo-bar{position:fixed;top:0;left:0;right:0;background:#000;color:#fff;font-size:.9rem;text-align:center;padding:.5rem 1rem;z-index:100}
+  #promo-bar a{color:#fff;text-decoration:underline;font-weight:600}
+
+  /* HEADER — identique */
+  header{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid #eee;position:sticky;top:0;z-index:10;background:#fff}
+  .logo{font-size:1.3rem;font-weight:700}
+  .burger{display:none;flex-direction:column;justify-content:space-around;width:30px;height:25px;cursor:pointer}
+  .burger span{display:block;height:3px;background:#333;border-radius:2px}
+  nav ul{list-style:none;display:flex;gap:1.5rem}
+
+  .wrap{max-width:1100px;margin:0 auto;padding:1rem 1.25rem}
+
+  /* GRID AFFICHES */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+  .card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden;transition:transform .12s ease}
+  .card:hover{transform:translateY(-2px)}
+  .poster{display:block;padding:.75rem}
+  .poster-img{
+    width:100%;
+    aspect-ratio:3/4;           /* vignette verticale */
+    object-fit:contain;          /* montre l’affiche entière sans crop */
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+  }
+  .meta{padding:.75rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  .city{font-weight:800}
+  .date{color:#444;font-size:.95rem}
+  .badge{font-size:.75rem;background:#eef8f1;border:1px solid #cfe9da;color:#1e7f4f;border-radius:999px;padding:.15rem .5rem}
+  h1{font-size:1.4rem;margin:.5rem 0 0}
+  .lead{color:var(--muted);margin-top:.25rem}
+
+  /* FOOTER */
+  footer{margin:2rem 0;color:#777;text-align:center}
+
+  /* Mobile header menu (identique) */
+  @media (max-width:768px){
+    header{flex-direction:column;gap:.5rem}
+    .burger{display:flex}
+    nav ul{
+      display:none;position:absolute;top:60px;left:0;right:0;background:#fff;
+      flex-direction:column;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid #eee;
+    }
+    nav ul.open{display:flex}
+  }
+  @media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:560px){ .grid{grid-template-columns:1fr} }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded',()=>{
+    // Burger (identique)
+    const b=document.querySelector('.burger'), ul=document.querySelector('nav ul');
+    if(b&&ul){ b.addEventListener('click',()=>{b.classList.toggle('open');ul.classList.toggle('open')}); }
+
+    // Données affiches (ajoute/édite ici)
+    const items = [
+      {
+        city: "Saint-Malo", date:"5 oct. 2025",
+        img:"/images/affiche-bourse-horlogere-bretonne-bretagne-saint-malo.png",
+        url:"/focus-saint-malo.html", tag:"Nouvelle"
+      },
+      {
+        city: "Rennes", date:"9 nov. 2025",
+        img:"/images/affiche-rennes.png",
+        url:"/focus-rennes.html"
+      },
+      {
+        city: "Nantes", date:"7 déc. 2025",
+        img:"/images/affiche-nantes.png",
+        url:"/focus-nantes.html"
+      }
+    ];
+
+    const grid = document.querySelector('.grid');
+    grid.innerHTML = items.map(x=>`
+      <a class="card" href="${x.url}">
+        <div class="poster">
+          <img class="poster-img" src="${x.img}" alt="Affiche — ${x.city}">
+        </div>
+        <div class="meta">
+          <div>
+            <div class="city">${x.city}</div>
+            <div class="date">${x.date}</div>
+          </div>
+          ${x.tag ? `<span class="badge">${x.tag}</span>` : ``}
+        </div>
+      </a>
+    `).join('');
+  });
+</script>
+</head>
+<body>
+  <!-- Promo (identique) -->
+  <div id="promo-bar">Vous organisez une bourse&nbsp;? <a href="mailto:contact@lagenda-des-bourses-horlogeres.com?subject=Mise%20en%20avant%20sur%20l'agenda">Contactez-nous&nbsp;!</a></div>
+
+  <!-- Header (identique) -->
+  <header>
+    <div class="logo">L'agenda des bourses horlogères</div>
+    <div class="burger" aria-label="Ouvrir le menu" aria-expanded="false" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/affiches.html">Affiches</a></li>
+        <li><a href="/index.html#agenda">Agenda</a></li>
+        <li><a href="/index.html#about">Qui sommes-nous ?</a></li>
+        <li><a href="/index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <h1>Affiches par ville</h1>
+    <p class="lead">Cliquez sur une ville pour voir la page de détails (format « focus »).</p>
+    <div class="grid"></div>
+  </main>
+
+  <footer>© 2025 — Association Horlogère de Bretagne × L’HorloBroc</footer>
+</body>
+</html>

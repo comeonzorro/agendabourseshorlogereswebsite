@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tirage au sort — Concours</title>
+<style>
+  :root { --bg:#0b0b0c; --fg:#eaeaea; --muted:#a0a0a0; --accent:#62d2ff; --card:#141417; --ok:#8aff9b; --warn:#ffcc66; }
+  html,body{background:var(--bg);color:var(--fg);font:16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}
+  .wrap{max-width:980px;margin:32px auto;padding:0 16px;}
+  h1{font-size:1.6rem;margin:0 0 12px}
+  .grid{display:grid;gap:16px;grid-template-columns:1fr}
+  @media (min-width:900px){ .grid{grid-template-columns:1.2fr .8fr}}
+  .card{background:var(--card);border:1px solid #2a2a2f;border-radius:14px;padding:16px}
+  label{display:block;font-size:.9rem;margin:.5rem 0 .35rem;color:var(--muted)}
+  textarea, input[type="number"], input[type="text"]{
+    width:100%;background:#0f0f12;color:var(--fg);border:1px solid #303038;border-radius:10px;
+    padding:10px 12px;outline:none
+  }
+  textarea{min-height:440px;resize:vertical;font-family:ui-monospace, Menlo, Consolas, Monaco, monospace}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .row .grow{flex:1 1 180px}
+  .help{color:var(--muted);font-size:.85rem}
+  .btn{
+    appearance:none;border:1px solid #2d2d35;background:#17171b;color:var(--fg);
+    padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:600
+  }
+  .btn.primary{background:linear-gradient(180deg,#1b3b4b,#102029);border-color:#234a5a}
+  .btn:disabled{opacity:.6;cursor:not-allowed}
+  .winners{display:grid;gap:8px;margin-top:8px}
+  .pill{
+    background:#0f0f12;border:1px solid #2d2d35;border-radius:12px;padding:10px 12px;
+    display:flex;align-items:center;justify-content:space-between
+  }
+  .pill b{color:var(--ok)}
+  .small{font-size:.85rem;color:var(--muted)}
+  .log{white-space:pre-wrap;background:#0f0f12;border:1px dotted #2d2d35;border-radius:8px;padding:10px;min-height:120px}
+  .tag{font-size:.72rem;border:1px solid #2d2d35;padding:2px 8px;border-radius:999px;background:#101012;color:#bfbfbf}
+  .footer{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>🎲 Tirage au sort — Concours</h1>
+
+    <div class="grid">
+      <!-- Colonne gauche: Liste des participants -->
+      <div class="card">
+        <label for="names">Participants (1 par ligne). Les lignes vides sont ignorées :</label>
+        <textarea id="names" spellcheck="false">ALLONSIUS
+Amine  Boumedjane 
+Baptiste Houel
+Baptiste Houel
+Camille Lanoe
+Camille Lanoe
+Charles GOUTTE
+Charles GOUTTE
+Ciprian LADARU
+Emmanuel QUESNEY
+Gerard Mauguin
+Hugo Fouquet
+Jeremie tresson
+Monea Corrado
+Monea Corrado
+Tennessee VIGGIANO
+Benjamin Mesnard
+Chedemail
+romanin
+Roussel
+Sebastien Le Bideau
+Tomy Suzanne
+
+REY Capucine
+Mathis Nicolas
+Laurent Blanc
+Laurent Blanc
+Tanzili
+Tanzili
+Jason Gouget
+Jason Gouget
+Denis Landau
+Yoann Leguern
+Leguern Stephane
+Le moine Nicolas
+Lemoine Axel
+PHILIPPE RIOCHE
+Gwenole Guegan
+Louis Patric
+Samantha Duboq
+Raphael Quero
+Thizel
+Alan Le Du
+Alexandra
+Thomas Girol
+Francois Hustache
+Lossouarm
+Lossouarm
+Maxence
+Loris
+Romain Gallet
+Thomas Guignebault
+Philoize
+Dominé
+Iwen
+Dominique</textarea>
+
+        <div class="row" style="margin-top:10px">
+          <label class="row" style="gap:8px;margin:0">
+            <input type="checkbox" id="keepDups" checked />
+            Les doublons = tickets multiples
+          </label>
+          <span class="tag" id="countTag">0 entrées</span>
+        </div>
+        <p class="help">Astuce : si « Les doublons » est coché, une personne listée 2× a deux chances.</p>
+      </div>
+
+      <!-- Colonne droite: Contrôles & Résultats -->
+      <div class="card">
+        <div class="row">
+          <div class="grow">
+            <label for="nb">Nombre de gagnants</label>
+            <input id="nb" type="number" min="1" value="1" />
+          </div>
+          <div class="grow">
+            <label for="seed">Seed (optionnel, pour rejouer le même tirage)</label>
+            <input id="seed" type="text" placeholder="ex : 2025-10-05-ami" />
+          </div>
+        </div>
+
+        <div class="row" style="margin:12px 0">
+          <button class="btn" id="dedupeBtn" title="Supprimer les doublons de la zone de texte">Dédupliquer la liste</button>
+          <button class="btn primary" id="drawBtn">Tirer au sort</button>
+          <button class="btn" id="clearBtn">Effacer résultats</button>
+        </div>
+
+        <div>
+          <label>Gagnants</label>
+          <div class="winners" id="winners"></div>
+          <div class="footer">
+            <button class="btn" id="copyBtn">Copier les gagnants</button>
+            <button class="btn" id="exportBtn">Exporter (JSON)</button>
+          </div>
+        </div>
+
+        <div style="margin-top:14px">
+          <label>Journal du tirage</label>
+          <div class="log" id="log"></div>
+          <p class="small">Le journal inclut l’heure, la seed (si fournie) et la liste source (après nettoyage).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* -------- utilitaires -------- */
+const $ = (s)=>document.querySelector(s);
+const namesEl = $("#names");
+const keepDupsEl = $("#keepDups");
+const countTag = $("#countTag");
+const winnersEl = $("#winners");
+const logEl = $("#log");
+const nbEl = $("#nb");
+const seedEl = $("#seed");
+
+function normalizeName(s){
+  return s.replace(/\s+/g," ").trim();
+}
+
+function parseNames(){
+  const raw = namesEl.value.split(/\r?\n/).map(normalizeName).filter(Boolean);
+  if(keepDupsEl.checked){
+    // Garder les doublons tels quels (tickets multiples)
+    return raw;
+  }else{
+    // Dédupliquer (insensible à la casse et aux espaces)
+    const seen = new Set();
+    const out = [];
+    for(const n of raw){
+      const key = n.toLocaleLowerCase();
+      if(!seen.has(key)){ seen.add(key); out.push(n); }
+    }
+    return out;
+  }
+}
+
+function updateCountTag(){
+  const arr = namesEl.value.split(/\r?\n/).map(normalizeName).filter(Boolean);
+  countTag.textContent = `${arr.length} entrées`;
+}
+updateCountTag();
+namesEl.addEventListener("input", updateCountTag);
+
+/* -------- RNG seedable (Mulberry32) -------- */
+function hashString(str){
+  let h = 1779033703 ^ str.length;
+  for(let i=0;i<str.length;i++){
+    h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+    h = (h << 13) | (h >>> 19);
+  }
+  return (h>>>0);
+}
+function mulberry32(a){
+  return function(){
+    let t = a += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  }
+}
+function makePRNG(seedText){
+  const seed = seedText && seedText.trim() ? hashString(seedText.trim()) : (Math.random()*1e9)>>>0;
+  return { rand: mulberry32(seed), seed };
+}
+
+/* -------- tirage -------- */
+const drawnHistory = new Set(); // évite qu'une même personne gagne plusieurs fois dans UNE exécution (si on tire plusieurs gagnants)
+
+function fisherYatesShuffle(arr, rand){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(rand()* (i+1));
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function draw(){
+  const base = parseNames();
+  const requested = Math.max(1, parseInt(nbEl.value||"1",10));
+  // Base de tirage (en respectant éventuellement les doublons)
+  let pool = base.slice();
+
+  // Pour éviter N>pool, on borne
+  const N = Math.min(requested, pool.length);
+  if(N===0){
+    alert("La liste de participants est vide.");
+    return;
+  }
+
+  const seedText = seedEl.value.trim();
+  const { rand, seed } = makePRNG(seedText);
+  fisherYatesShuffle(pool, rand);
+
+  const winners = [];
+  const seenRound = new Set(); // pas deux fois le même nom dans CE tirage
+
+  for(const name of pool){
+    if(winners.length>=N) break;
+    const key = name.toLocaleLowerCase();
+    if(seenRound.has(key)) continue; // évite doublon dans ce tirage (utile si keepDups=true)
+    if(drawnHistory.has(key)) continue; // évite qu'un ancien gagnant regagne si on relance sans effacer
+    winners.push(name);
+    seenRound.add(key);
+    drawnHistory.add(key);
+  }
+
+  if(winners.length < N){
+    // Impossible de fournir N gagnants uniques avec la pool + historique
+    // On autorise alors des gagnants déjà tirés dans l'historique (mais pas doublonnés dans CE tirage)
+    for(const name of pool){
+      if(winners.length>=N) break;
+      const key = name.toLocaleLowerCase();
+      if(seenRound.has(key)) continue;
+      winners.push(name);
+      seenRound.add(key);
+    }
+  }
+
+  renderWinners(winners);
+  appendLog({
+    when: new Date().toLocaleString(),
+    seed,
+    keepDuplicates: keepDupsEl.checked,
+    winners,
+    baseCount: base.length,
+    distinctCount: new Set(base.map(n=>n.toLocaleLowerCase())).size,
+    source: base
+  });
+}
+
+function renderWinners(arr){
+  winnersEl.innerHTML = "";
+  arr.forEach((w,i)=>{
+    const div = document.createElement("div");
+    div.className = "pill";
+    div.innerHTML = `<span><b>${i+1}.</b> ${escapeHTML(w)}</span>`;
+    winnersEl.appendChild(div);
+  });
+}
+
+function appendLog(entry){
+  const head = `— ${entry.when} — seed:${entry.seed} — doublons:${entry.keepDuplicates ? "oui":"non"} — base:${entry.baseCount} (distincts:${entry.distinctCount})`;
+  const wins = entry.winners.map((w,i)=>`${i+1}. ${w}`).join("\n");
+  const block = `${head}\nGagnants:\n${wins}\n`;
+  logEl.textContent = `${block}\n${logEl.textContent}`;
+}
+
+/* -------- outils UI -------- */
+function escapeHTML(s){ return s.replace(/[&<>"']/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
+
+$("#drawBtn").addEventListener("click", draw);
+
+$("#clearBtn").addEventListener("click", ()=>{
+  winnersEl.innerHTML = "";
+  drawnHistory.clear();
+});
+
+$("#copyBtn").addEventListener("click", ()=>{
+  const items = [...winnersEl.querySelectorAll(".pill")].map(el=>el.textContent.trim());
+  if(!items.length){ alert("Aucun gagnant à copier."); return; }
+  const text = items.map(t=>t.replace(/^\d+\.\s*/,"")).join("\n");
+  navigator.clipboard.writeText(text).then(()=>{ 
+    alert("Gagnants copiés dans le presse-papiers."); 
+  });
+});
+
+$("#exportBtn").addEventListener("click", ()=>{
+  const now = new Date().toISOString().replace(/[:.]/g,"-");
+  const obj = { 
+    exportedAt: new Date().toISOString(),
+    seed: seedEl.value.trim() || null,
+    keepDuplicates: keepDupsEl.checked,
+    winners: [...winnersEl.querySelectorAll(".pill")].map(el=>el.textContent.trim().replace(/^\d+\.\s*/,"")),
+    source: parseNames()
+  };
+  const blob = new Blob([JSON.stringify(obj,null,2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `tirage-${now}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+$("#dedupeBtn").addEventListener("click", ()=>{
+  const lines = namesEl.value.split(/\r?\n/).map(normalizeName).filter(Boolean);
+  const seen = new Set();
+  const out = [];
+  for(const n of lines){
+    const key = n.toLocaleLowerCase();
+    if(!seen.has(key)){ seen.add(key); out.push(n); }
+  }
+  namesEl.value = out.join("\n");
+  updateCountTag();
+});
+
+/* Met à jour le compteur quand l’option doublons change */
+keepDupsEl.addEventListener("change", ()=>{
+  // juste pour feedback : recalcul possible, mais ici on montre le nombre de lignes brutes
+});
+</script>
+</body>
+</html>
