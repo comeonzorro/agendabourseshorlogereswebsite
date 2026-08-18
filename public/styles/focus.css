@@ -42,8 +42,13 @@ header {
   background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
 }
 .logo {
-  font-family: var(--font-display);
-  font-size: 1.15rem; font-weight: 700; letter-spacing: -.01em;
+  display: flex; align-items: center; flex-shrink: 1; min-width: 0;
+  text-decoration: none;
+}
+.logo:hover { text-decoration: none; opacity: .88; }
+.logo img {
+  display: block; width: auto; height: auto;
+  max-height: 52px; max-width: min(100%, 340px);
 }
 .burger {
   display: none; flex-direction: column; justify-content: space-around;
