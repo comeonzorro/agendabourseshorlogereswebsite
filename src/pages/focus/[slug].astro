@@ -1,0 +1,210 @@
+---
+import FocusLayout from '../../layouts/FocusLayout.astro';
+import { getAllFocusPages, getFocusPage } from '../../lib/focus';
+import type { FocusCta } from '../../lib/types';
+
+export function getStaticPaths() {
+  return getAllFocusPages().map((page) => ({ params: { slug: page.slug } }));
+}
+
+const { slug } = Astro.params;
+const page = getFocusPage(slug!);
+
+if (!page) {
+  return Astro.redirect('/focus');
+}
+
+function btnClass(style?: FocusCta['style']) {
+  if (style === 'secondary') return 'btn secondary';
+  if (style === 'ghost') return 'btn ghost';
+  return 'btn';
+}
+
+function isExternal(href: string) {
+  return href.startsWith('http') || href.startsWith('mailto:');
+}
+---
+<FocusLayout
+  title={page.seo.title}
+  description={page.seo.description}
+  ogTitle={page.seo.ogTitle}
+  ogDescription={page.seo.ogDescription}
+  ogImage={page.seo.ogImage || page.poster}
+  timerBg={page.theme?.timerBg}
+  countdown={page.countdown}
+  ics={page.ics}
+>
+  <main class="wrap">
+    <section class="hero" id="event">
+      <div>
+        <h1>{page.title}</h1>
+        <p class="sub" set:html={page.subtitle} />
+
+        <div class="timer" aria-label="Compte à rebours">
+          <div class="tile"><span class="n" id="d">—</span><span class="l">jours</span></div>
+          <div class="tile"><span class="n" id="h">—</span><span class="l">heures</span></div>
+          <div class="tile"><span class="n" id="m">—</span><span class="l">minutes</span></div>
+          <div class="tile"><span class="n" id="s">—</span><span class="l">secondes</span></div>
+        </div>
+
+        {page.ctas.length > 0 && (
+          <div class="cta-row">
+            {page.ctas.map((cta) => (
+              <a
+                class={btnClass(cta.style)}
+                href={cta.href}
+                id={cta.id}
+                target={isExternal(cta.href) ? '_blank' : undefined}
+                rel={isExternal(cta.href) ? 'noopener' : undefined}
+              >
+                {cta.label}
+              </a>
+            ))}
+          </div>
+        )}
+
+        <div class="meta">
+          {page.pills.map((pill) => (
+            <span class="pill">{pill}</span>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <img class="hero-img" src={page.poster} alt={page.posterAlt} />
+      </div>
+    </section>
+
+    <section class="paths">
+      {page.cards.map((card) => (
+        <article class="card">
+          <h3>
+            {card.title}
+            {card.badge && <> <span class="badge">{card.badge}</span></>}
+          </h3>
+          <p set:html={card.description} />
+          {card.bullets && (
+            <ul>
+              {card.bullets.map((item) => (
+                <li set:html={item} />
+              ))}
+            </ul>
+          )}
+          {card.cta && (
+            <div class="cta">
+              <a
+                class={btnClass(card.cta.style || 'primary')}
+                href={card.cta.href}
+                target={isExternal(card.cta.href) ? '_blank' : undefined}
+                rel={isExternal(card.cta.href) ? 'noopener' : undefined}
+              >
+                {card.cta.label}
+              </a>
+            </div>
+          )}
+        </article>
+      ))}
+    </section>
+
+    {page.gallery && (
+      <section class="gallery">
+        <h2 style="font-size:1.25rem;margin-bottom:.5rem">{page.gallery.title}</h2>
+        {page.gallery.note && <p class="note">{page.gallery.note}</p>}
+        <div class="grid" style="margin-top:1rem">
+          {page.gallery.items.map((item) => (
+            <article class="prod">
+              <img src={item.src} alt={item.alt} />
+              <div class="p">
+                <h4>{item.title}</h4>
+                {item.note && <p class="note">{item.note}</p>}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {page.shop && (
+      <section class="shop">
+        <h2 style="font-size:1.25rem;margin-bottom:.5rem">{page.shop.title}</h2>
+        {page.shop.note && <p class="note">{page.shop.note}</p>}
+        <div class="grid" style="margin-top:1rem">
+          {page.shop.items.map((item) => (
+            <article class="prod">
+              <img src={item.src} alt={item.alt} />
+              <div class="p">
+                <h4>{item.title}</h4>
+                {item.price && <div class="price">{item.price}</div>}
+                {item.note && <p class="note">{item.note}</p>}
+                <div class="cta-inline">
+                  {item.links.map((link) => (
+                    <a
+                      class={btnClass(link.style || 'primary')}
+                      href={link.href}
+                      target={isExternal(link.href) ? '_blank' : undefined}
+                      rel={isExternal(link.href) ? 'noopener' : undefined}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {page.leadForm && (
+      <section class="lead">
+        <div>
+          <h3 style="font-size:1.2rem">{page.leadForm.title}</h3>
+          <p class="note">{page.leadForm.description}</p>
+          {page.leadForm.bullets && (
+            <ul class="note" style="margin:.5rem 0 0 1rem">
+              {page.leadForm.bullets.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <div>
+          <form action={page.leadForm.formspree || '#'} method="POST">
+            <input type="email" name="email" placeholder="Votre email" required />
+            <button class="btn" type="submit">Recevoir les infos</button>
+          </form>
+          {page.leadForm.note && <p class="note" style="margin-top:.5rem">{page.leadForm.note}</p>}
+        </div>
+      </section>
+    )}
+
+    <section class="faq" id="faq">
+      <h2 style="font-size:1.25rem;margin-bottom:.5rem">Questions fréquentes</h2>
+      {page.faq.map((item) => (
+        <details>
+          <summary>{item.question}</summary>
+          <p set:html={item.answer} />
+        </details>
+      ))}
+    </section>
+  </main>
+
+  {page.dock && (
+    <div class="dock">
+      <div class="wrap">
+        {page.dock.items.map((item) => (
+          <a
+            class={btnClass(item.style || 'primary')}
+            href={item.href}
+            target={isExternal(item.href) ? '_blank' : undefined}
+            rel={isExternal(item.href) ? 'noopener' : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <footer><p>{page.footer}</p></footer>
+</FocusLayout>

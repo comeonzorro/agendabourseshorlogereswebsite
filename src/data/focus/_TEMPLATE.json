@@ -1,0 +1,38 @@
+{
+  "slug": "ma-ville",
+  "city": "Ma Ville",
+  "year": "2026",
+  "gridDate": "1 janvier 2026",
+  "title": "Bourse horlogère — Ma Ville",
+  "subtitle": "Date • Lieu • Horaires",
+  "countdown": "2026-01-01T10:00:00+01:00",
+  "poster": "/images/mon-affiche.jpg",
+  "posterAlt": "Affiche — Bourse horlogère à Ma Ville",
+  "pills": ["Entrée : X €", "Organisateur"],
+  "ctas": [
+    { "label": "Voir dans l'agenda", "href": "/#agenda", "style": "primary" },
+    { "label": "FAQ", "href": "#faq", "style": "secondary" }
+  ],
+  "cards": [
+    {
+      "title": "→ Côté événement",
+      "description": "Description courte de la bourse.",
+      "bullets": ["Date", "Lieu"],
+      "cta": { "label": "Ouvrir l'affiche", "href": "/images/mon-affiche.jpg", "style": "primary" }
+    },
+    {
+      "title": "→ Organisateurs",
+      "description": "Nom de l'association ou organisateur.",
+      "bullets": ["Contact : email@example.com"]
+    }
+  ],
+  "faq": [
+    { "question": "Horaires & lieu", "answer": "Détails sur l'affiche." }
+  ],
+  "footer": "© 2026 — Organisateur",
+  "seo": {
+    "title": "Focus — Ma Ville • L'agenda des bourses horlogères",
+    "description": "Description pour les moteurs de recherche.",
+    "ogImage": "/images/mon-affiche.jpg"
+  }
+}

@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <slot name="head" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3F2178T14"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-D3F2178T14');
+    </script>
+  </head>
+  <body>
+    <slot />
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const burger = document.querySelector('.burger');
+        const navUl = document.querySelector('nav ul');
+        if (!burger || !navUl) return;
+        burger.addEventListener('click', () => {
+          burger.classList.toggle('open');
+          navUl.classList.toggle('open');
+        });
+        navUl.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            if (navUl.classList.contains('open')) {
+              navUl.classList.remove('open');
+              burger.classList.remove('open');
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

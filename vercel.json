@@ -1,4 +1,18 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "astro",
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/focus.html", "destination": "/focus", "permanent": true },
+    { "source": "/index-focus.html", "destination": "/focus", "permanent": true },
+    { "source": "/focus-amiens.html", "destination": "/focus/amiens", "permanent": true },
+    { "source": "/focus-blaye.html", "destination": "/focus/blaye", "permanent": true },
+    { "source": "/focus-besancon.html", "destination": "/focus/besancon", "permanent": true },
+    { "source": "/focus-dourdan.html", "destination": "/focus/dourdan", "permanent": true },
+    { "source": "/focus-lille.html", "destination": "/focus/lille", "permanent": true },
+    { "source": "/focus-les-fins.html", "destination": "/focus/les-fins", "permanent": true },
+    { "source": "/focus-saint-malo.html", "destination": "/focus/saint-malo", "permanent": true },
+    { "source": "/tirage-au-sort.html", "destination": "/tirage-au-sort", "permanent": true }
+  ]
 }

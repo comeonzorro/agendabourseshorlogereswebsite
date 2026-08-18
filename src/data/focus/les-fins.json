@@ -1,0 +1,37 @@
+{
+  "slug": "les-fins",
+  "city": "Les Fins",
+  "year": "2025",
+  "gridDate": "9 nov. 2025",
+  "title": "Bourse horlogère — Les Fins (16ᵉ édition)",
+  "subtitle": "Dimanche 9 novembre 2025 • Salle polyvalente, rue du Calvaire • 25500 Les Fins, France • 08:00 → 18:00",
+  "countdown": "2025-11-09T08:00:00+01:00",
+  "poster": "/images/horlotroc-affiche.png",
+  "posterAlt": "Affiche — Les Fins",
+  "pills": ["Entrée visiteur : 2 €", "60 exposants (France & international)", "Dépôt-vente : samedi 8 nov. dès 15h", "Adresse : Salle polyvalente, rue du Calvaire, 25500 Les Fins"],
+  "ctas": [
+    { "label": "FAQ", "href": "#faq", "style": "secondary" }
+  ],
+  "cards": [
+    {
+      "title": "→ Côté Événement",
+      "description": "Programme, liste des exposants, infos pratiques (accès, stationnement, restauration).",
+      "bullets": ["60 exposants de France et d'autres pays", "Dépôt-vente le 8/11 à partir de 15h", "Ouverture au public le 9/11 de 08:00 à 18:00"]
+    },
+    {
+      "title": "→ Côté Boutique",
+      "description": "Sélection spéciale à retirer sur place, révisions & réglages, bracelets (cuir & NATO) — tailles à la demande."
+    }
+  ],
+  "faq": [
+    { "question": "Accès & parking", "answer": "Adresse : Salle polyvalente, rue du Calvaire, 25500 Les Fins. Stationnement à proximité immédiate et rues adjacentes. Merci de respecter le voisinage." },
+    { "question": "Dépôt-vente", "answer": "Le dépôt-vente a lieu la veille, samedi 8 novembre, à partir de 15h. Merci de prévoir une pièce d'identité et la description des pièces déposées." },
+    { "question": "Tarifs & horaires", "answer": "Entrée visiteur : 2 €. Ouvert le dimanche 9 novembre de 08:00 à 18:00." }
+  ],
+  "footer": "© 2025 — Association Horlogère de Bretagne × L'HorloBroc",
+  "seo": {
+    "title": "Focus — Les Fins • L'agenda des bourses horlogères",
+    "description": "16ᵉ Bourse horlogère aux Les Fins — Dimanche 9 novembre 2025. 60 exposants, entrée 2 €.",
+    "ogImage": "/images/horlotroc-affiche.png"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "slug": "dourdan",
+  "city": "Dourdan",
+  "year": "2026",
+  "gridDate": "22 nov. 2026",
+  "title": "10ᵉ Bourse Horlogère de Dourdan",
+  "subtitle": "Dimanche 22 novembre 2026 • Salle des fêtes de Dourdan, rue d'Orsonville (800 m²) • 10:00 → 17:00 • En partenariat avec l'AFAHA • Accès RER C (Dourdan).",
+  "countdown": "2026-11-22T10:00:00+01:00",
+  "poster": "/images/bourse-dourdan-2026.jpg",
+  "posterAlt": "Affiche — 10ᵉ Bourse Horlogère de Dourdan, 22 novembre 2026",
+  "pills": ["Entrée : 5 €", "50 exposants • ~600 visiteurs", "800 m² • Restauration sur place"],
+  "ctas": [
+    { "label": "Infos & contact", "href": "mailto:horloge.dourdan@gmail.com?subject=Infos%20Bourse%20Horlog%C3%A8re%20de%20Dourdan", "style": "primary" },
+    { "label": "+ Ajouter à mon agenda", "href": "#", "style": "secondary", "id": "ics" },
+    { "label": "FAQ", "href": "#faq", "style": "ghost" }
+  ],
+  "cards": [
+    {
+      "title": "→ Le rendez-vous",
+      "description": "La grande bourse horlogère en Île-de-France : collections, pièces, outillage et rencontres entre passionnés.",
+      "bullets": ["<strong>50 exposants</strong> sur <strong>800 m²</strong> — environ <strong>600 visiteurs</strong> attendus.", "Montres, horloges, pièces détachées, documentation et bonnes adresses.", "<strong>Restauration sur place</strong> pour profiter de la journée."],
+      "cta": { "label": "Voir la FAQ", "href": "#faq", "style": "primary" }
+    },
+    {
+      "title": "→ Organisateurs",
+      "badge": "AFAHA",
+      "description": "La <strong>10ᵉ édition</strong> est organisée par le <strong>Lions Club de Dourdan</strong>, en <strong>partenariat avec l'AFAHA</strong>.",
+      "bullets": ["Informations et <strong>inscriptions exposants</strong> : <a href=\"mailto:horloge.dourdan@gmail.com\">horloge.dourdan@gmail.com</a>", "Accès facile en transports : <strong>RER C</strong>, station Dourdan."],
+      "cta": { "label": "Écrire pour s'inscrire", "href": "mailto:horloge.dourdan@gmail.com?subject=Inscriptions%20Bourse%20de%20Dourdan%202026", "style": "secondary" }
+    }
+  ],
+  "gallery": {
+    "title": "En images — Dourdan",
+    "note": "Aperçu des précédentes éditions & de la salle.",
+    "items": [
+      { "src": "/images/P1040296.JPG", "alt": "Vue générale — Bourse de Dourdan", "title": "Vue générale", "note": "Éditions précédentes" },
+      { "src": "/images/P1040295.JPG", "alt": "Stands & exposants — Dourdan", "title": "Stands & exposants", "note": "Grande surface, nombreux stands" },
+      { "src": "/images/P1040309.JPG", "alt": "Ambiance & échanges — Dourdan", "title": "Ambiance", "note": "Rencontres & découvertes" }
+    ]
+  },
+  "leadForm": {
+    "title": "Recevoir les infos pratiques & rappel J-3",
+    "description": "Adresse exacte, accès RER C, horaires, tarifs et rappel avant l'événement.",
+    "bullets": ["Plan & accès (RER C, arrêt Dourdan)", "Tarif d'entrée (5 €)", "Rappel avant l'événement"],
+    "note": "Zéro spam • Désinscription en 1 clic."
+  },
+  "faq": [
+    { "question": "Où a lieu l'événement ?", "answer": "<strong>Salle des fêtes de Dourdan</strong>, rue d'Orsonville, 91410 Dourdan (800 m²). Accès RER C, arrêt « Dourdan »." },
+    { "question": "Quels sont les horaires et le tarif ?", "answer": "Dimanche <strong>22 novembre 2026</strong>, de <strong>10 h à 17 h</strong>. <strong>Entrée 5 €</strong> (tarif communiqué par l'organisation)." },
+    { "question": "Y a-t-il de la restauration sur place ?", "answer": "Oui, <strong>restauration sur place</strong> est prévue." },
+    { "question": "Qui organise ?", "answer": "Le <strong>Lions Club de Dourdan</strong>, en <strong>partenariat avec l'AFAHA</strong>." },
+    { "question": "Contact et inscriptions ?", "answer": "<a href=\"mailto:horloge.dourdan@gmail.com\">horloge.dourdan@gmail.com</a> — Bernard Pesneau (président du Lions Club de Dourdan) : <a href=\"tel:+33607703435\">06 07 70 34 35</a>." }
+  ],
+  "dock": {
+    "items": [
+      { "label": "Infos & contact", "href": "mailto:horloge.dourdan@gmail.com?subject=Infos%20Bourse%20de%20Dourdan", "style": "primary" },
+      { "label": "↑ Haut de page", "href": "#event", "style": "secondary" }
+    ]
+  },
+  "footer": "© 2026 — Bourse Horlogère de Dourdan • Informations publiques communiquées par l'organisation.",
+  "ics": {
+    "uid": "ahb-2026-dourdan@agenda-bourses-horlogeres",
+    "summary": "10ᵉ Bourse Horlogère de Dourdan",
+    "location": "Salle des fêtes de Dourdan, Rue d'Orsonville, 91410 Dourdan",
+    "description": "50 exposants, ~600 visiteurs — Partenariat AFAHA — Entrée 5 €. Infos & inscriptions: horloge.dourdan@gmail.com",
+    "dtStart": "20261122T090000Z",
+    "dtEnd": "20261122T160000Z",
+    "filename": "bourse-horlogere-dourdan-2026-11-22.ics"
+  },
+  "seo": {
+    "title": "Focus — Dourdan • L'agenda des bourses horlogères",
+    "description": "10ᵉ Bourse Horlogère de Dourdan — Dimanche 22 novembre 2026. 50 exposants, 800 m², entrée 5 €.",
+    "ogTitle": "Focus — Bourse Horlogère de Dourdan • 22 novembre 2026",
+    "ogDescription": "50 exposants • ~600 visiteurs • 800 m² • 10:00 → 17:00 • Entrée 5 € • Restauration • Partenariat AFAHA.",
+    "ogImage": "/images/bourse-dourdan-2026.jpg"
+  }
+}

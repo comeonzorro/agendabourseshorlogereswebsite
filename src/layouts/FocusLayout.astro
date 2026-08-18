@@ -1,0 +1,117 @@
+---
+import PromoBar from '../components/PromoBar.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  timerBg?: string;
+  countdown?: string;
+  ics?: {
+    uid: string;
+    summary: string;
+    location: string;
+    description: string;
+    dtStart: string;
+    dtEnd: string;
+    filename: string;
+  };
+}
+
+const { title, description, ogTitle, ogDescription, ogImage, timerBg, countdown, ics } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {ogTitle && <meta property="og:title" content={ogTitle} />}
+    {(ogDescription || description) && <meta property="og:description" content={ogDescription || description} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/styles/focus.css" />
+    {timerBg && <style is:inline>{`:root { --timer-bg: ${timerBg}; }`}</style>}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3F2178T14"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-D3F2178T14');
+    </script>
+    {(countdown || ics) && (
+      <script is:inline define:vars={{ countdown, ics }}>
+        document.addEventListener('DOMContentLoaded', () => {
+          if (countdown) {
+            const target = new Date(countdown).getTime();
+            const d = document.querySelector('#d');
+            const h = document.querySelector('#h');
+            const m = document.querySelector('#m');
+            const s = document.querySelector('#s');
+            const tick = () => {
+              const now = Date.now();
+              let t = Math.max(0, target - now);
+              const days = Math.floor(t / 86400000); t -= days * 86400000;
+              const hours = Math.floor(t / 3600000); t -= hours * 3600000;
+              const mins = Math.floor(t / 60000); t -= mins * 60000;
+              const secs = Math.floor(t / 1000);
+              if (d) d.textContent = String(days);
+              if (h) h.textContent = String(hours).padStart(2, '0');
+              if (m) m.textContent = String(mins).padStart(2, '0');
+              if (s) s.textContent = String(secs).padStart(2, '0');
+            };
+            tick();
+            setInterval(tick, 1000);
+          }
+          const icsBtn = document.getElementById('ics');
+          if (icsBtn && ics) {
+            const body = [
+              'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Agenda Bourses Horlogeres//FR',
+              'BEGIN:VEVENT',
+              `UID:${ics.uid}`,
+              `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
+              `DTSTART:${ics.dtStart}`,
+              `DTEND:${ics.dtEnd}`,
+              `SUMMARY:${ics.summary}`,
+              `LOCATION:${ics.location}`,
+              `DESCRIPTION:${ics.description}`,
+              'END:VEVENT', 'END:VCALENDAR'
+            ].join('\n');
+            const url = URL.createObjectURL(new Blob([body], { type: 'text/calendar' }));
+            icsBtn.href = url;
+            icsBtn.download = ics.filename;
+          }
+        });
+      </script>
+    )}
+  </head>
+  <body>
+    <PromoBar />
+    <SiteHeader />
+    <slot />
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const burger = document.querySelector('.burger');
+        const navUl = document.querySelector('nav ul');
+        if (!burger || !navUl) return;
+        burger.addEventListener('click', () => {
+          burger.classList.toggle('open');
+          navUl.classList.toggle('open');
+        });
+        navUl.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            if (navUl.classList.contains('open')) {
+              navUl.classList.remove('open');
+              burger.classList.remove('open');
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

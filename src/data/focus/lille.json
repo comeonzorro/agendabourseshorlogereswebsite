@@ -1,0 +1,41 @@
+{
+  "slug": "lille",
+  "city": "Lille",
+  "year": "2025",
+  "gridDate": "14 sept. 2025",
+  "title": "11ᵉ Bourse horlogère — Lille",
+  "subtitle": "Dimanche 14 septembre 2025 • Hippodrome de Marcq-en-Baroeul, 137 Bd Clemenceau • 59700 Marcq-en-Baroeul • 10:00 → 16:30",
+  "countdown": "2025-09-14T10:00:00+02:00",
+  "poster": "/images/Flyer-11eme-Bourse-horlogere-de-Lille-2025-1.png",
+  "posterAlt": "Affiche — 11ᵉ Bourse Horlogère de Lille",
+  "pills": ["Entrée visiteur : 5 €", "11ᵉ édition • Watches & Cars Show", "Organisée par l'Association Montres & Mécaniques", "Contact : montresetmecaniques@orange.fr • +33 6 82 68 64 53"],
+  "ctas": [
+    { "label": "Site officiel & infos", "href": "https://boursehorlogeredelille.fr", "style": "primary" },
+    { "label": "FAQ", "href": "#faq", "style": "secondary" }
+  ],
+  "cards": [
+    {
+      "title": "→ Côté Événement",
+      "description": "Programme, exposants, voitures & ambiance. Horaires 10h–16h30.",
+      "bullets": ["Hippodrome de Marcq-en-Baroeul", "Watches & Cars Show", "Entrée : 5 €"],
+      "cta": { "label": "Voir le site", "href": "https://boursehorlogeredelille.fr/", "style": "primary" }
+    },
+    {
+      "title": "→ Accès & infos pratiques",
+      "description": "Adresse : 137, Bd Clemenceau, 59700 Marcq-en-Baroeul. Stationnements à proximité de l'hippodrome.",
+      "bullets": ["Contact : montresetmecaniques@orange.fr", "Téléphone : +33 6 82 68 64 53", "Partenaire : AFAHA"],
+      "cta": { "label": "Écrire aux orga", "href": "mailto:montresetmecaniques@orange.fr", "style": "secondary" }
+    }
+  ],
+  "faq": [
+    { "question": "Horaires & tarifs", "answer": "Ouvert le dimanche 14 septembre 2025 de 10h à 16h30. Entrée : 5 €." },
+    { "question": "Lieu", "answer": "Hippodrome de Marcq-en-Baroeul — 137, Bd Clemenceau, 59700 Marcq-en-Baroeul." },
+    { "question": "Contact", "answer": "Association Montres & Mécaniques — montresetmecaniques@orange.fr • +33 6 82 68 64 53." }
+  ],
+  "footer": "© 2025 — Association Horlogère de Bretagne × L'HorloBroc",
+  "seo": {
+    "title": "Focus — Lille • L'agenda des bourses horlogères",
+    "description": "11ᵉ Bourse Horlogère de Lille — Dimanche 14 septembre 2025. Watches & Cars Show.",
+    "ogImage": "/images/Flyer-11eme-Bourse-horlogere-de-Lille-2025-1.png"
+  }
+}

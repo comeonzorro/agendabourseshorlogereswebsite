@@ -1,0 +1,61 @@
+{
+  "slug": "blaye",
+  "city": "Blaye",
+  "year": "2026",
+  "gridDate": "26 avril 2026",
+  "title": "10ᵉ Bourse Horlogère de Blaye",
+  "subtitle": "Dimanche 26 avril 2026 • Couvent des Minimes, La Citadelle, 33390 Blaye • 10:00 → 17:00",
+  "countdown": "2026-04-26T10:00:00+02:00",
+  "poster": "/image_placeholder.jpg",
+  "posterAlt": "Citadelle de Blaye — Couvent des Minimes",
+  "pills": ["🎟️ Entrée gratuite", "~30 exposants", "Organisé par l'AFAHA"],
+  "ctas": [
+    { "label": "Infos & contact", "href": "mailto:afaha.grand-so@orange.fr?subject=Infos%20Bourse%20Horlog%C3%A8re%20de%20Blaye", "style": "primary" },
+    { "label": "+ Ajouter à mon agenda", "href": "#", "style": "secondary", "id": "ics" },
+    { "label": "FAQ", "href": "#faq", "style": "ghost" }
+  ],
+  "cards": [
+    {
+      "title": "→ Côté Événement",
+      "description": "Un rendez-vous incontournable pour les passionnés d'horlogerie ancienne en Nouvelle-Aquitaine.",
+      "bullets": ["Montres à gousset, pendules Louis XIV, horloges anciennes", "Outillage horloger, pièces détachées, livres spécialisés", "Vente, échange et exposition"],
+      "cta": { "label": "Voir la FAQ", "href": "#faq", "style": "primary" }
+    },
+    {
+      "title": "→ Côté Patrimoine",
+      "badge": "UNESCO",
+      "description": "La Citadelle de Blaye, classée au patrimoine mondial de l'UNESCO, offre un cadre exceptionnel.",
+      "bullets": ["Fortifications Vauban surplombant la Gironde", "Couvent des Minimes — salle historique", "Profitez de la visite de la Citadelle après la bourse"],
+      "cta": { "label": "Découvrir Blaye", "href": "https://www.blaye.fr/", "style": "secondary" }
+    }
+  ],
+  "faq": [
+    { "question": "Où a lieu l'événement ?", "answer": "Couvent des Minimes, La Citadelle, 33390 Blaye (Gironde). Accès par la porte Royale de la Citadelle." },
+    { "question": "Quels sont les horaires et les tarifs ?", "answer": "Dimanche 26 avril 2026, de 10:00 à 17:00. <strong>Entrée gratuite</strong> pour tous." },
+    { "question": "Comment s'y rendre ?", "answer": "En voiture : A10 sortie Blaye, puis suivre \"Citadelle\". Parking gratuit à proximité. En ferry : liaison Lamarque ↔ Blaye depuis le Médoc." },
+    { "question": "Qui organise ?", "answer": "L'Association Française des Amateurs d'Horlogerie Ancienne (AFAHA) — Délégation Grand Sud-Ouest." },
+    { "question": "Contact ?", "answer": "Email : afaha.grand-so@orange.fr — Tél. : 06 80 73 04 35" }
+  ],
+  "dock": {
+    "items": [
+      { "label": "Infos & contact", "href": "mailto:afaha.grand-so@orange.fr?subject=Infos%20Bourse%20de%20Blaye", "style": "primary" },
+      { "label": "↑ Haut de page", "href": "#event", "style": "secondary" }
+    ]
+  },
+  "footer": "© 2026 — Bourse Horlogère de Blaye • Informations publiques communiquées par l'AFAHA.",
+  "theme": { "timerBg": "#8b0000" },
+  "ics": {
+    "uid": "afaha-2026-blaye@agenda-bourses-horlogeres",
+    "summary": "10ᵉ Bourse Horlogère de Blaye",
+    "location": "Couvent des Minimes, La Citadelle, 33390 Blaye",
+    "description": "~30 exposants — Entrée gratuite — Organisé par l'AFAHA. Contact: afaha.grand-so@orange.fr",
+    "dtStart": "20260426T080000Z",
+    "dtEnd": "20260426T150000Z",
+    "filename": "bourse-horlogere-blaye-2026-04-26.ics"
+  },
+  "seo": {
+    "title": "Focus — Blaye • L'agenda des bourses horlogères",
+    "description": "10ᵉ Bourse Horlogère de Blaye — Dimanche 26 avril 2026, Couvent des Minimes. Entrée gratuite, ~30 exposants.",
+    "ogImage": "/image_placeholder.jpg"
+  }
+}

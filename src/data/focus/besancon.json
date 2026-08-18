@@ -1,0 +1,61 @@
+{
+  "slug": "besancon",
+  "city": "Besançon",
+  "year": "2026",
+  "gridDate": "20 juin 2026",
+  "title": "12ᵉ Bourse Horlogère de Besançon",
+  "subtitle": "Samedi 20 juin 2026 • Kursaal, Place du Casino, 25000 Besançon • 10:00 → 17:00 • Dans le cadre des <strong>24h du Temps</strong>",
+  "countdown": "2026-06-20T10:00:00+02:00",
+  "poster": "/image_placeholder.jpg",
+  "posterAlt": "Kursaal de Besançon — Bourse horlogère",
+  "pills": ["🎟️ Entrée gratuite", "~40 exposants", "Organisé par l'AFAHA"],
+  "ctas": [
+    { "label": "Site officiel — 24h du Temps", "href": "https://www.les24hdutemps.fr/", "style": "primary" },
+    { "label": "+ Ajouter à mon agenda", "href": "#", "style": "secondary", "id": "ics" },
+    { "label": "FAQ", "href": "#faq", "style": "ghost" }
+  ],
+  "cards": [
+    {
+      "title": "→ Côté Bourse Horlogère",
+      "description": "Le rendez-vous annuel des passionnés d'horlogerie dans la capitale française de l'horlogerie.",
+      "bullets": ["Pendules, montres anciennes et modernes", "Documentation et ouvrages spécialisés", "~40 exposants de toute la France", "Organisé par l'AFAHA depuis 2015"],
+      "cta": { "label": "Voir la FAQ", "href": "#faq", "style": "primary" }
+    },
+    {
+      "title": "→ Côté 24h du Temps",
+      "badge": "Festival",
+      "description": "La bourse s'inscrit dans le festival « Les 24h du Temps », célébrant l'horlogerie bisontine.",
+      "bullets": ["Conférences et ateliers horlogers", "Expositions au Musée du Temps", "Visites du Palais Granvelle", "Animations tout le week-end"],
+      "cta": { "label": "Découvrir Besançon", "href": "https://www.besancon.fr/", "style": "secondary" }
+    }
+  ],
+  "faq": [
+    { "question": "Où a lieu l'événement ?", "answer": "Kursaal, Place du Casino, 25000 Besançon. Salle de spectacle emblématique au cœur de la ville." },
+    { "question": "Quels sont les horaires et les tarifs ?", "answer": "Samedi 20 juin 2026, de 10:00 à 17:00. <strong>Entrée gratuite</strong> pour tous." },
+    { "question": "Comment s'y rendre ?", "answer": "En train : gare de Besançon-Viotte (TGV) puis tramway ligne 1. En voiture : A36 sortie Besançon-Centre. Parkings à proximité." },
+    { "question": "Qui organise ?", "answer": "L'Association Française des Amateurs d'Horlogerie Ancienne (AFAHA), dans le cadre des « 24h du Temps » organisées par la Ville de Besançon." },
+    { "question": "Pourquoi Besançon ?", "answer": "Besançon est la capitale historique de l'horlogerie française. La ville accueille le Musée du Temps et a été le berceau de l'industrie horlogère nationale depuis le XVIIIᵉ siècle." }
+  ],
+  "dock": {
+    "items": [
+      { "label": "Site officiel", "href": "https://www.les24hdutemps.fr/", "style": "primary" },
+      { "label": "↑ Haut de page", "href": "#event", "style": "secondary" }
+    ]
+  },
+  "footer": "© 2026 — Bourse Horlogère de Besançon • Les 24h du Temps • AFAHA",
+  "theme": { "timerBg": "#1e3a5f" },
+  "ics": {
+    "uid": "afaha-2026-besancon@agenda-bourses-horlogeres",
+    "summary": "12ᵉ Bourse Horlogère de Besançon — 24h du Temps",
+    "location": "Kursaal, Place du Casino, 25000 Besançon",
+    "description": "~40 exposants — Entrée gratuite — Dans le cadre des 24h du Temps. Organisé par l'AFAHA.",
+    "dtStart": "20260620T080000Z",
+    "dtEnd": "20260620T150000Z",
+    "filename": "bourse-horlogere-besancon-2026-06-20.ics"
+  },
+  "seo": {
+    "title": "Focus — Besançon • L'agenda des bourses horlogères",
+    "description": "12ᵉ Bourse Horlogère de Besançon — Samedi 20 juin 2026, Kursaal. Entrée gratuite, ~40 exposants, 24h du Temps.",
+    "ogImage": "/image_placeholder.jpg"
+  }
+}

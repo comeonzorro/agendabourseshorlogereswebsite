@@ -1,0 +1,43 @@
+{
+  "slug": "amiens",
+  "city": "Amiens",
+  "year": "2026",
+  "gridDate": "17 mai 2026",
+  "title": "Bourse horlogère — Amiens",
+  "subtitle": "Dimanche 17 mai 2026 • Amiens (Somme) — lieu et horaires précis sur l'affiche ci-contre",
+  "countdown": "2026-05-17T10:00:00+02:00",
+  "poster": "/images/amiens.jpg",
+  "posterAlt": "Affiche — Bourse horlogère à Amiens, 17 mai 2026",
+  "pills": ["Organisée par l'association « Tout pour l'amateur de montres »", "Amiens"],
+  "ctas": [
+    { "label": "Voir dans l'agenda", "href": "/#agenda", "style": "primary" },
+    { "label": "FAQ", "href": "#faq", "style": "secondary" }
+  ],
+  "cards": [
+    {
+      "title": "→ Côté événement",
+      "description": "Bourse horlogère à Amiens, portée par des passionnés pour les passionnés.",
+      "bullets": ["Dimanche 17 mai 2026", "Détails pratiques sur l'affiche"],
+      "cta": { "label": "Ouvrir l'affiche", "href": "/images/amiens.jpg", "style": "primary" }
+    },
+    {
+      "title": "→ Organisateurs",
+      "description": "Association « Tout pour l'amateur de montres », basée à Amiens.",
+      "bullets": ["Président : Gilles", "Secrétariat : Hubert"],
+      "cta": { "label": "Une question pour l'agenda ?", "href": "/#contact", "style": "secondary" }
+    }
+  ],
+  "faq": [
+    { "question": "Horaires & lieu", "answer": "Retrouvez l'adresse exacte et les horaires sur l'affiche (image ci-dessus)." },
+    { "question": "Contact organisateurs", "answer": "Pour joindre l'association, utilisez les coordonnées indiquées sur l'affiche ou présentez-vous sur place le jour J." },
+    { "question": "Mise en avant sur ce site", "answer": "Cette page fait partie de l'agenda des bourses horlogères. Pour toute demande liée au site : <a href=\"/#contact\">rubrique contact</a>." }
+  ],
+  "footer": "© 2025 — Association Horlogère de Bretagne × L'HorloBroc",
+  "seo": {
+    "title": "Focus — Amiens • L'agenda des bourses horlogères",
+    "description": "Bourse horlogère à Amiens — Dimanche 17 mai 2026. Organisée par l'association « Tout pour l'amateur de montres ». Infos et affiche.",
+    "ogTitle": "Focus — Bourse horlogère à Amiens • 17 mai 2026",
+    "ogDescription": "Association « Tout pour l'amateur de montres » — Amiens. Affiche et détails.",
+    "ogImage": "/images/amiens.jpg"
+  }
+}

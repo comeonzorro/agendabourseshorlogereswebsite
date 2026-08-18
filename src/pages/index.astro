@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PromoBar from '../components/PromoBar.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import bourses from '../data/bourses.json';
+import type { Bourse } from '../lib/types';
+
+const events = bourses as Bourse[];
+---
+<BaseLayout title="Bourses Horlogères Européennes 2025-2026">
+  <link rel="stylesheet" href="/styles/home.css" slot="head" />
+  <script src="/scripts/agenda.js" slot="head"></script>
+
+  <PromoBar />
+  <SiteHeader />
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Ne cherchez plus, on l'a fait pour vous</h1>
+      <p>
+        Voici la liste exhaustive des bourses horlogères européennes de 2025.
+        Retrouvez toutes les informations essentielles pour organiser votre visite
+        et ne manquer aucun événement important.
+      </p>
+      <a href="#agenda" class="cta-button">Voir l'agenda</a>
+    </div>
+    <img src="/image_placeholder.jpg" alt="Illustration bourse horlogère" />
+  </section>
+
+  <section class="agenda-section" id="agenda">
+    <h2>Agenda 2025-2026</h2>
+    <div class="agenda-actions"></div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Dates</th>
+            <th>Localisation</th>
+            <th>Adresse</th>
+            <th>Contact</th>
+            <th>Tarif</th>
+            <th>Mail/Website</th>
+          </tr>
+        </thead>
+        <tbody>
+          {events.map((event) => (
+            <tr>
+              <td>{event.dates}</td>
+              <td>{event.location}</td>
+              <td>{event.address}</td>
+              <td>{event.contact}</td>
+              <td>{event.price}</td>
+              <td>
+                <a href={event.website.href}>
+                  {event.website.label}
+                </a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="about-section" id="about">
+    <h2>Qui sommes-nous ?</h2>
+    <p>L'HorloBroc est une référence dans le domaine des montres anciennes et de collection.</p>
+    <p>
+      Fondé par Pierre Eugène Lebret, passionné d'horlogerie,
+      L'HorloBroc organise des événements et rassemble les passionnés du temps et de son art.
+    </p>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <h2>Vous organisez une bourse horlogère ?</h2>
+    <p>
+      Apparaître en détail dans notre agenda, sponsoriser un événement ou promouvoir vos services auprès de milliers de
+      passionnés ? Écrivez-nous et créons ensemble une mise en avant sur-mesure.
+    </p>
+    <a
+      class="cta-button"
+      href="mailto:contact@lagenda-des-bourses-horlogeres.com?subject=Demande%20de%20mise%20en%20avant"
+    >
+      Demander une mise en avant
+    </a>
+  </section>
+
+  <footer>
+    <p>Propulsé par <a href="http://lhorlobroc.shop" target="_blank">l'horlobroc</a></p>
+    <p>
+      N'hésitez pas à nous retrouver sur nos réseaux sociaux
+      et faire un tour sur le site pour ne rien manquer des nouveautés !
+    </p>
+  </footer>
+</BaseLayout>

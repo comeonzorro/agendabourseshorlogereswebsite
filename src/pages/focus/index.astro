@@ -1,0 +1,32 @@
+---
+import FocusLayout from '../../layouts/FocusLayout.astro';
+import { getFocusGridItems } from '../../lib/focus';
+
+const items = getFocusGridItems();
+---
+<FocusLayout
+  title="Affiches — L'agenda des bourses horlogères"
+  description="Aperçus des affiches par ville. Cliquez pour les détails et la billetterie."
+>
+  <main class="wrap">
+    <h1 class="page-title">Affiches par ville</h1>
+    <p class="lead-text">Cliquez sur une ville pour voir la page de détails (format « focus »).</p>
+    <div class="focus-grid">
+      {items.map((item) => (
+        <a class="focus-card" href={item.url}>
+          <div class="poster">
+            <img class="poster-img" src={item.img} alt={`Affiche — ${item.city}`} />
+          </div>
+          <div class="focus-meta">
+            <div>
+              <div class="city">{item.city}</div>
+              <div class="date">{item.date}</div>
+            </div>
+            {item.tag && <span class="year-badge">{item.tag}</span>}
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+  <footer>© 2025 — Association Horlogère de Bretagne × L'HorloBroc</footer>
+</FocusLayout>
