@@ -1,104 +1,145 @@
 {
   "slug": "saint-malo",
   "city": "Saint-Malo",
-  "year": "2025",
-  "gridDate": "5 oct. 2025",
-  "title": "Première Bourse Horlogère de Bretagne — Saint-Malo",
-  "subtitle": "Dimanche 5 octobre 2025 • Halle aux Blés (Intra-Muros) • 09:00 → 18:00",
-  "countdown": "2025-10-05T10:00:00+02:00",
-  "poster": "/images/affiche-bourse-horlogere-bretonne-bretagne-saint-malo.png",
-  "posterAlt": "Halle aux Blés, Saint-Malo",
-  "pills": ["Entrée : 3 € (5 € concours)", "Adresse : Halle aux Blés, Intra-Muros", "Contact : contact@association-horlogere-bretagne.com"],
+  "year": "2026",
+  "gridDate": "4 oct. 2026",
+  "title": "2ᵉ Bourse Horlogère de Bretagne — Saint-Servan",
+  "subtitle": "Dimanche 4 octobre 2026 • Halles du marché, Place Bouvet, Saint-Servan (35400 Saint-Malo) • 10:00 → 18:00",
+  "countdown": "2026-10-04T10:00:00+02:00",
+  "poster": "/images/affiche-bourse-saint-malo-2026.jpg",
+  "posterAlt": "Affiche officielle — 2ᵉ Bourse Horlogère de Bretagne, Saint-Servan 2026",
+  "pills": [
+    "Entrée libre",
+    "~40 exposants",
+    "Concours / tombola 5 € (optionnel)",
+    "Food truck sur place"
+  ],
   "ctas": [
-    { "label": "Infos & billetterie", "href": "https://association-horlogere-bretagne.com/?utm_source=focus&utm_medium=landing&utm_campaign=event-5oct", "style": "primary" },
+    {
+      "label": "Site officiel AHB",
+      "href": "https://association-horlogere-bretagne.com/?utm_source=agenda&utm_medium=focus&utm_campaign=saint-malo-2026",
+      "style": "primary"
+    },
     { "label": "+ Ajouter à mon agenda", "href": "#", "style": "secondary", "id": "ics" },
     { "label": "FAQ", "href": "#faq", "style": "ghost" }
   ],
   "cards": [
     {
       "title": "→ Côté Événement",
-      "description": "Programme, exposants, concours, infos pratiques (parking, horaires, accès).",
-      "bullets": ["Carte interactive & logistique", "Concours photo & montre du public", "Stand AHB & adhésions"],
-      "cta": { "label": "Voir le site AHB", "href": "https://association-horlogere-bretagne.com/?utm_source=focus&utm_medium=card&utm_campaign=event-5oct", "style": "primary" }
+      "description": "Fort du succès de la première édition, l'Association Horlogère de Bretagne accueille visiteurs, chineurs et exposants sous les Halles du marché de Saint-Servan.",
+      "bullets": [
+        "Montres, pièces, outillage, documentation",
+        "~40 stands de passionnés et professionnels",
+        "Table ronde à 15h — transmission aux jeunes générations",
+        "Tirage concours / tombola à 16h (participation 5 €)"
+      ],
+      "cta": {
+        "label": "Voir le programme",
+        "href": "https://association-horlogere-bretagne.com/?utm_source=agenda&utm_medium=focus-card&utm_campaign=saint-malo-2026",
+        "style": "primary"
+      }
     },
     {
-      "title": "→ Côté Boutique",
-      "badge": "Sélection spéciale",
-      "description": "Préparez votre visite : révisions, bracelets, et une sélection de montres prête à essayer le jour J.",
-      "bullets": ["Révision & diagnostic offerts* sur place", "Bracelets cuir & NATO — tailles à la demande", "Réservations click-&-collect pour le 5/10"],
-      "cta": { "label": "Découvrir la sélection", "href": "https://lhorlobroc.shop/collections/nouveautes", "style": "primary" }
+      "title": "→ Côté Exposants",
+      "badge": "AHB",
+      "description": "Réservez vos mètres linéaires dès maintenant. Adhérents AHB : −10 €/m sur le stand.",
+      "bullets": [
+        "Stand : 55 €/m TTC (2 m = 100 €)",
+        "Montage exposants : 7h → 9h",
+        "Tables fournies (quantités limitées) — électricité sur demande",
+        "Contact : contact@association-horlogere-bretagne.com"
+      ],
+      "cta": {
+        "label": "Réserver un stand",
+        "href": "https://association-horlogere-bretagne.com/?utm_source=agenda&utm_medium=focus-stand&utm_campaign=saint-malo-2026",
+        "style": "secondary"
+      }
     }
   ],
-  "shop": {
-    "title": "Sélection à retirer le 5/10",
-    "note": "Réservez maintenant, essayez et retirez à la Halle aux Blés. *Diagnostic visuel gratuit, sur place.",
+  "gallery": {
+    "title": "En images — 1ʳᵉ édition (2025)",
+    "note": "Clichés de la première édition à Saint-Malo — l'ambiance qui revient en 2026.",
     "items": [
       {
-        "src": "/images/acutron-horobroc.jpg",
-        "alt": "Bulova Acutron",
-        "title": "Bulova Acutron",
-        "price": "750 €",
-        "note": "Révision atelier + garantie 12 mois",
-        "links": [
-          { "label": "Réserver", "href": "https://lhorlobroc.shop/products/bulova-acutron?variant=51114632806666", "style": "primary" },
-          { "label": "Poser une question", "href": "mailto:contact@lhorlobroc.shop?subject=Question%20Bulova%20Acutron%20%E2%80%94%20Focus", "style": "secondary" }
-        ]
+        "src": "/images/galerie-saint-malo-01.jpg",
+        "alt": "Ambiance bourse horlogère de Bretagne",
+        "title": "Sous les halles",
+        "note": "Édition 2025"
       },
       {
-        "src": "/images/buren-superslender.jpg",
-        "alt": "BUREN SUPERSLENDER",
-        "title": "BUREN SUPERSLENDER",
-        "price": "820 €",
-        "note": "Réglée, prête à porter",
-        "links": [
-          { "label": "Réserver", "href": "https://lhorlobroc.shop/products/buren-superslender?variant=51114614227210", "style": "primary" },
-          { "label": "Poser une question", "href": "mailto:contact@lhorlobroc.shop?subject=Question%20Buren%20Superslender%20%E2%80%94%20Focus", "style": "secondary" }
-        ]
+        "src": "/images/galerie-saint-malo-02.jpg",
+        "alt": "Stands et visiteurs",
+        "title": "Stands & visiteurs",
+        "note": "Passionnés et professionnels"
       },
       {
-        "src": "/images/omega-constellation-manhattan.jpg",
-        "alt": "Omega Constellation Manhattan",
-        "title": "Omega Constellation Manhattan",
-        "price": "1 200 €",
-        "note": "Révision atelier + garantie 12 mois",
-        "links": [
-          { "label": "Réserver", "href": "https://lhorlobroc.shop/products/omega-constellation-manhattan?variant=51114539745546", "style": "primary" },
-          { "label": "Poser une question", "href": "mailto:contact@lhorlobroc.shop?subject=Question%20Omega%20Constellation%20Manhattan%20Focus", "style": "secondary" }
-        ]
+        "src": "/images/galerie-saint-malo-03.jpg",
+        "alt": "Rencontres autour des montres",
+        "title": "Rencontres",
+        "note": "L'ambiance de la bourse"
       }
     ]
   },
-  "leadForm": {
-    "title": "Recevoir la short-list « Première vintage < 500 € »",
-    "description": "Un PDF ultra-concis (réfs fiables, calibres éprouvés, tailles portables) + alerte en avant-première des pièces qui rentrent avant la bourse.",
-    "bullets": ["3 modèles sûrs • 2 alternatives", "Checklist d'inspection", "Guide des tailles & bracelets"],
-    "formspree": "https://formspree.io/f/xeqwpzkn",
-    "note": "Zéro spam • Désinscription en 1 clic."
-  },
   "faq": [
-    { "question": "Où se garer à proximité ?", "answer": "Parkings Intra-Muros (St-Vincent, St-Louis) + zones extérieures avec navettes. Prévoyez 10–12 min à pied." },
-    { "question": "Puis-je faire réviser ma montre sur place ?", "answer": "Nous réalisons un diagnostic visuel gratuit. Les révisions complètes sont déposées et suivies à l'atelier L'HorloBroc." },
-    { "question": "Comment réserver une montre pour le 5/10 ?", "answer": "Utilisez le bouton « Réserver » sur la fiche produit (acompte sécurisé). Retrait et essai le jour J à notre stand." }
+    {
+      "question": "L'entrée est-elle payante ?",
+      "answer": "Non — l'entrée à la bourse est <strong>libre et gratuite</strong>. Seule la participation au concours / tombola (5 €) est payante."
+    },
+    {
+      "question": "Où a lieu l'événement ?",
+      "answer": "<strong>Halles du marché</strong>, Place Bouvet, Saint-Servan · 35400 Saint-Malo. Village au cœur de Saint-Malo."
+    },
+    {
+      "question": "Quels sont les horaires ?",
+      "answer": "Dimanche <strong>4 octobre 2026</strong>, de <strong>10h à 18h</strong>. Montage exposants : 7h → 9h."
+    },
+    {
+      "question": "Y a-t-il de la restauration sur place ?",
+      "answer": "Oui — <strong>food truck</strong> devant les Halles, de 10h à 18h."
+    },
+    {
+      "question": "Parking ?",
+      "answer": "Parkings publics à proximité des Halles du marché à Saint-Servan."
+    },
+    {
+      "question": "Comment participer au concours / tombola ?",
+      "answer": "Participation optionnelle à <strong>5 €</strong> — tirage à 16h, en parallèle de la table ronde. Billet avec QR code (e-mail). Cessible jusqu'au 2 octobre 2026."
+    },
+    {
+      "question": "Contact & stands ?",
+      "answer": "<a href=\"mailto:contact@association-horlogere-bretagne.com\">contact@association-horlogere-bretagne.com</a> — ou via le <a href=\"https://association-horlogere-bretagne.com/\" target=\"_blank\" rel=\"noopener\">site officiel AHB</a>."
+    }
   ],
   "dock": {
     "items": [
-      { "label": "Infos & billetterie", "href": "https://association-horlogere-bretagne.com/?utm_source=focus&utm_medium=dock&utm_campaign=event-5oct", "style": "primary" },
-      { "label": "Sélection L'HorloBroc", "href": "https://lhorlobroc.shop/?utm_source=focus&utm_medium=dock&utm_campaign=selection-5oct", "style": "secondary" }
+      {
+        "label": "Entrée libre · Infos",
+        "href": "https://association-horlogere-bretagne.com/?utm_source=agenda&utm_medium=focus-dock&utm_campaign=saint-malo-2026",
+        "style": "primary"
+      },
+      {
+        "label": "Réserver un stand",
+        "href": "https://association-horlogere-bretagne.com/?utm_source=agenda&utm_medium=focus-dock-stand&utm_campaign=saint-malo-2026",
+        "style": "secondary"
+      }
     ]
   },
-  "footer": "© 2025 — Association Horlogère de Bretagne × L'HorloBroc",
+  "footer": "© 2026 — Association Horlogère de Bretagne · Informations publiques communiquées par l'organisation.",
+  "theme": { "timerBg": "#1a4d7c" },
   "ics": {
-    "uid": "ahb-2025-saintmalo@association-horlogere-bretagne.com",
-    "summary": "Première Bourse Horlogère de Bretagne",
-    "location": "Halle aux Blés, Intra-Muros, Saint-Malo",
-    "description": "Salon horloger — Association Horlogère de Bretagne. Billetterie et infos sur association-horlogere-bretagne.com",
-    "dtStart": "20251005T080000Z",
-    "dtEnd": "20251005T150000Z",
-    "filename": "bourse-horlogere-bretagne-2025-10-05.ics"
+    "uid": "ahb-2026-saint-servan@association-horlogere-bretagne.com",
+    "summary": "2ᵉ Bourse Horlogère de Bretagne — Saint-Servan",
+    "location": "Halles du marché, Place Bouvet, Saint-Servan, 35400 Saint-Malo",
+    "description": "Entrée libre — ~40 exposants — Table ronde 15h — Concours/tombola 16h. Infos : association-horlogere-bretagne.com",
+    "dtStart": "20261004T080000Z",
+    "dtEnd": "20261004T160000Z",
+    "filename": "bourse-horlogere-bretagne-2026-10-04.ics"
   },
   "seo": {
-    "title": "Focus — Saint-Malo • L'agenda des bourses horlogères",
-    "description": "Première Bourse Horlogère de Bretagne — Saint-Malo, 5 octobre 2025. Halle aux Blés, Intra-Muros.",
-    "ogImage": "/images/affiche-bourse-horlogere-bretonne-bretagne-saint-malo.png"
+    "title": "Focus — Saint-Malo (Saint-Servan) 2026 • L'agenda des bourses horlogères",
+    "description": "2ᵉ Bourse Horlogère de Bretagne — Dimanche 4 octobre 2026, Halles du marché à Saint-Servan. Entrée libre, ~40 exposants, AHB.",
+    "ogTitle": "Focus — 2ᵉ Bourse Horlogère de Bretagne • 4 octobre 2026",
+    "ogDescription": "Saint-Servan, Saint-Malo — Entrée libre · ~40 stands · Table ronde · Concours 5 € · Food truck.",
+    "ogImage": "/images/affiche-bourse-saint-malo-2026.jpg"
   }
 }
