@@ -162,7 +162,7 @@ nav a:hover {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  align-items: center;
+  align-items: start;
 }
 
 .hero-eyebrow {
@@ -204,16 +204,14 @@ nav a:hover {
 .hero-visual {
   margin: 0;
   position: relative;
-  max-width: 380px;
+  width: min(100%, 480px);
   margin-inline: auto;
 }
 
 .hero-visual img {
   display: block;
   width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: center 20%;
+  height: auto;
   border-radius: calc(var(--radius) + 4px);
   box-shadow: var(--shadow);
   border: 1px solid rgba(255, 255, 255, 0.8);
