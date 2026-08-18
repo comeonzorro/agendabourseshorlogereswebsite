@@ -1,6 +1,8 @@
 ---
 import FocusLayout from '../../layouts/FocusLayout.astro';
 import FocusGrid from '../../components/FocusGrid.astro';
+import SiteLogo from '../../components/SiteLogo.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
 import { getFocusGridSplit } from '../../lib/focus';
 
 const { upcoming, archives } = getFocusGridSplit();
@@ -10,6 +12,11 @@ const { upcoming, archives } = getFocusGridSplit();
   description="Aperçus des affiches par ville. Cliquez pour les détails et la billetterie."
 >
   <main class="wrap">
+    <div class="focus-intro">
+      <a href="/" class="hero-brand" aria-label="L'agenda des bourses horlogères — accueil">
+        <SiteLogo variant="hero" />
+      </a>
+    </div>
     <h1 class="page-title">Affiches par ville</h1>
     <p class="lead-text">Cliquez sur une ville pour voir la page de détails (format « focus »).</p>
 
@@ -34,5 +41,5 @@ const { upcoming, archives } = getFocusGridSplit();
       </section>
     )}
   </main>
-  <footer>© 2025 — Association Horlogère de Bretagne × L'HorloBroc</footer>
+  <SiteFooter note="© 2025 — Association Horlogère de Bretagne × L'HorloBroc" />
 </FocusLayout>

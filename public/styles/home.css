@@ -1,3 +1,5 @@
+@import url('/styles/logo.css');
+
 /* ===== Design tokens ===== */
 :root {
   --ink: #1c1c1c;
@@ -67,7 +69,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.9rem 2rem;
+  padding: 1rem 2rem;
   border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
@@ -86,15 +88,6 @@ header {
 
 .logo:hover {
   text-decoration: none;
-  opacity: 0.88;
-}
-
-.logo img {
-  display: block;
-  width: auto;
-  height: auto;
-  max-height: 52px;
-  max-width: min(100%, 340px);
 }
 
 nav ul {
@@ -141,11 +134,6 @@ nav a:hover {
     gap: 0.5rem;
   }
 
-  .logo img {
-    max-height: 44px;
-    max-width: min(100%, 280px);
-  }
-
   .burger {
     display: flex;
     position: static;
@@ -154,7 +142,7 @@ nav a:hover {
   nav ul {
     display: none;
     position: absolute;
-    top: 60px;
+    top: 88px;
     left: 0;
     right: 0;
     background: #fff;
@@ -554,22 +542,3 @@ th {
   margin-bottom: 1.5rem;
 }
 
-/* ===== Footer ===== */
-footer {
-  margin-top: 3rem;
-  padding: 2rem;
-  background: #111;
-  color: #ccc;
-  text-align: center;
-}
-
-footer p {
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-
-footer a {
-  color: #fff;
-  text-decoration: underline;
-  font-weight: 600;
-}

@@ -1,0 +1,25 @@
+---
+import SiteLogo from './SiteLogo.astro';
+
+interface Props {
+  note?: string;
+}
+
+const { note } = Astro.props;
+---
+<footer class="site-footer">
+  <a href="/" class="site-footer__logo" aria-label="L'agenda des bourses horlogères — accueil">
+    <SiteLogo variant="footer" />
+  </a>
+  {note ? (
+    <p>{note}</p>
+  ) : (
+    <>
+      <p>Propulsé par <a href="http://lhorlobroc.shop" target="_blank" rel="noopener">l'horlobroc</a></p>
+      <p>
+        N'hésitez pas à nous retrouver sur nos réseaux sociaux
+        et faire un tour sur le site pour ne rien manquer des nouveautés !
+      </p>
+    </>
+  )}
+</footer>

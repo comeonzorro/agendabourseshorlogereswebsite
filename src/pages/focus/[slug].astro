@@ -1,5 +1,7 @@
 ---
 import FocusLayout from '../../layouts/FocusLayout.astro';
+import SiteLogo from '../../components/SiteLogo.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
 import { getAllFocusPages, getFocusPage } from '../../lib/focus';
 import { buildFocusEventJsonLd } from '../../lib/event-schema';
 import type { FocusCta } from '../../lib/types';
@@ -39,6 +41,9 @@ function isExternal(href: string) {
   <main class="wrap">
     <section class="hero" id="event">
       <div>
+        <a href="/" class="hero-brand" aria-label="L'agenda des bourses horlogères — accueil">
+          <SiteLogo variant="hero-compact" />
+        </a>
         <h1>{page.title}</h1>
         <p class="sub" set:html={page.subtitle} />
 
@@ -208,5 +213,5 @@ function isExternal(href: string) {
     </div>
   )}
 
-  <footer><p>{page.footer}</p></footer>
+  <SiteFooter note={page.footer} />
 </FocusLayout>

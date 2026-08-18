@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PromoBar from '../components/PromoBar.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteLogo from '../components/SiteLogo.astro';
 import AgendaTable from '../components/AgendaTable.astro';
 import bourses from '../data/bourses.json';
 import { isPastDateText, parseDateFR, startOfToday } from '../lib/dates';
@@ -50,6 +52,7 @@ const structuredData = buildUpcomingEventsGraph(upcoming);
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-content">
+        <SiteLogo variant="hero" />
         <p class="hero-eyebrow">Agenda des bourses horlogères</p>
         <h1>Ne cherchez plus, on l'a fait pour vous</h1>
         <p class="hero-lead">
@@ -126,11 +129,5 @@ const structuredData = buildUpcomingEventsGraph(upcoming);
     </a>
   </section>
 
-  <footer>
-    <p>Propulsé par <a href="http://lhorlobroc.shop" target="_blank" rel="noopener">l'horlobroc</a></p>
-    <p>
-      N'hésitez pas à nous retrouver sur nos réseaux sociaux
-      et faire un tour sur le site pour ne rien manquer des nouveautés !
-    </p>
-  </footer>
+  <SiteFooter />
 </BaseLayout>

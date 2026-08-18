@@ -1,0 +1,108 @@
+/* Logo — tailles partagées sur tout le site */
+.site-logo {
+  display: block;
+  width: auto;
+  height: auto;
+}
+
+.site-logo--header {
+  max-height: 88px;
+  max-width: min(100%, 520px);
+}
+
+.site-logo--hero {
+  max-width: min(100%, 520px);
+  max-height: 140px;
+  margin-bottom: 1.25rem;
+}
+
+.site-logo--hero-compact {
+  max-width: min(100%, 420px);
+  max-height: 96px;
+  margin-bottom: 1rem;
+}
+
+.site-logo--footer {
+  max-width: min(100%, 280px);
+  max-height: 72px;
+  margin: 0 auto 1rem;
+}
+
+.site-logo--inline {
+  max-height: 56px;
+  max-width: min(100%, 320px);
+}
+
+.logo:hover .site-logo,
+.site-footer__logo:hover .site-logo,
+.hero-brand:hover .site-logo {
+  opacity: 0.9;
+}
+
+.site-footer {
+  margin-top: 3rem;
+  padding: 2.5rem 1.5rem 2rem;
+  background: #111;
+  color: #ccc;
+  text-align: center;
+}
+
+.site-footer__logo {
+  display: inline-flex;
+  justify-content: center;
+  text-decoration: none;
+  margin-bottom: 0.25rem;
+}
+
+.site-footer__logo:hover {
+  text-decoration: none;
+}
+
+.site-footer p {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.site-footer a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.hero-brand {
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.hero-brand:hover {
+  text-decoration: none;
+}
+
+.focus-intro {
+  text-align: center;
+  padding: 1.5rem 0 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .site-logo--header {
+    max-height: 64px;
+    max-width: min(100%, 360px);
+  }
+
+  .site-logo--hero {
+    max-height: 108px;
+    max-width: min(100%, 400px);
+  }
+
+  .site-logo--hero-compact {
+    max-height: 72px;
+    max-width: min(100%, 320px);
+  }
+
+  .site-logo--footer {
+    max-height: 56px;
+    max-width: min(100%, 240px);
+  }
+}

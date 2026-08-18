@@ -1,0 +1,15 @@
+---
+interface Props {
+  variant?: 'header' | 'hero' | 'hero-compact' | 'footer' | 'inline';
+}
+
+const { variant = 'header' } = Astro.props;
+---
+<img
+  class={`site-logo site-logo--${variant}`}
+  src="/images/logo-agenda-bourses-horlogeres.png"
+  alt="L'agenda des bourses horlogères"
+  width="1536"
+  height="1024"
+  decoding="async"
+/>
