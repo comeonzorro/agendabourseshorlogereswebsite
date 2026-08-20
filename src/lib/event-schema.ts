@@ -5,6 +5,7 @@ import { getAllFocusPages, getFocusPage } from './focus';
 type SchemaObject = Record<string, unknown>;
 
 const SITE = 'https://www.lagenda-des-bourses-horlogeres.com';
+const DEFAULT_EVENT_IMAGE = `${SITE}/images/hero-bourse.jpg`;
 
 /** Détails précis repris des anciennes pages HTML (schema.org/Event). */
 const FOCUS_EVENT_OVERRIDES: Record<string, SchemaObject> = {
@@ -188,26 +189,68 @@ function buildPlace(location: string, address: string): SchemaObject {
   };
 }
 
-function parseOffers(price: string, url?: string): SchemaObject | undefined {
-  if (!price || price === 'N/A') return undefined;
-  if (/gratuit|libre|free/i.test(price)) {
+function defaultPerformer(organizer?: SchemaObject): SchemaObject {
+  if (organizer && typeof organizer === 'object' && organizer.name) {
     return {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'EUR',
-      availability: 'https://schema.org/InStock',
-      ...(url ? { url } : {}),
+      '@type': 'Organization',
+      name: organizer.name as string,
+      ...(organizer.url ? { url: organizer.url } : {}),
     };
   }
-  const match = price.match(/(\d+(?:[.,]\d+)?)/);
-  if (!match) return undefined;
   return {
-    '@type': 'Offer',
-    price: match[1].replace(',', '.'),
-    priceCurrency: 'EUR',
-    availability: 'https://schema.org/InStock',
-    ...(url ? { url } : {}),
+    '@type': 'Organization',
+    name: 'Exposants de montres et horlogerie',
   };
+}
+
+function buildOffers(price: string | undefined, url: string, validFrom: string): SchemaObject {
+  const offer: SchemaObject = {
+    '@type': 'Offer',
+    url,
+    validFrom,
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'EUR',
+  };
+
+  if (!price || price === 'N/A') return offer;
+
+  if (/gratuit|libre|free/i.test(price)) {
+    offer.price = '0';
+    return offer;
+  }
+
+  const match = price.match(/(\d+(?:[.,]\d+)?)/);
+  if (match) offer.price = match[1].replace(',', '.');
+
+  return offer;
+}
+
+function normalizeOffers(offers: SchemaObject, url: string, validFrom: string): SchemaObject {
+  return {
+    ...offers,
+    url: (offers.url as string | undefined) ?? url,
+    validFrom: (offers.validFrom as string | undefined) ?? validFrom,
+  };
+}
+
+function priceFromPills(pills: string[]): string | undefined {
+  return pills.find((pill) => /gratuit|libre|free|entrée|€/i.test(pill));
+}
+
+function enrichEventSchema(event: SchemaObject): SchemaObject {
+  const url = event.url as string;
+  const startDate = event.startDate as string;
+
+  if (!event.image) event.image = [DEFAULT_EVENT_IMAGE];
+  if (!event.performer) event.performer = defaultPerformer(event.organizer as SchemaObject | undefined);
+
+  if (!event.offers) {
+    event.offers = buildOffers(undefined, url, startDate);
+  } else {
+    event.offers = normalizeOffers(event.offers as SchemaObject, url, startDate);
+  }
+
+  return event;
 }
 
 function eventUrlForBourse(bourse: Bourse) {
@@ -238,7 +281,6 @@ export function buildBourseEventSchema(bourse: Bourse, imageUrl?: string): Schem
   const startDate = toParisIso(parsed.startDate, 10);
   const endDate = toParisIso(parsed.endDate, 17);
   const url = eventUrlForBourse(bourse);
-  const offers = parseOffers(bourse.price, url.startsWith('http') ? url : undefined);
 
   const event: SchemaObject = {
     '@type': 'Event',
@@ -248,12 +290,12 @@ export function buildBourseEventSchema(bourse: Bourse, imageUrl?: string): Schem
     location: buildPlace(bourse.location, bourse.address),
     url,
     description: `${bourse.dates} — ${bourse.location}. ${bourse.address}`,
+    offers: buildOffers(bourse.price, url, startDate),
   };
 
-  if (offers) event.offers = offers;
   if (imageUrl) event.image = [imageUrl];
 
-  return event;
+  return enrichEventSchema(event);
 }
 
 function focusSlugFromHref(href: string) {
@@ -315,16 +357,25 @@ export function buildFocusEventSchema(page: FocusPage): SchemaObject {
   if (absoluteImage) base.image = [absoluteImage];
 
   const extras = page.structuredData ?? FOCUS_EVENT_OVERRIDES[page.slug];
-  if (!extras) return base;
+  let event = base;
 
-  return {
-    ...base,
-    ...extras,
-    url,
-    startDate: (extras.startDate as string | undefined) ?? startDate,
-    endDate: (extras.endDate as string | undefined) ?? endDate,
-    ...(absoluteImage ? { image: [absoluteImage] } : {}),
-  };
+  if (extras) {
+    event = {
+      ...base,
+      ...extras,
+      url,
+      startDate: (extras.startDate as string | undefined) ?? startDate,
+      endDate: (extras.endDate as string | undefined) ?? endDate,
+      ...(absoluteImage ? { image: [absoluteImage] } : {}),
+    };
+  }
+
+  if (!event.offers) {
+    const priceHint = priceFromPills(page.pills);
+    if (priceHint) event.offers = buildOffers(priceHint, url, startDate);
+  }
+
+  return enrichEventSchema(event);
 }
 
 function buildUpcomingEventSchema(bourse: Bourse): SchemaObject | null {
